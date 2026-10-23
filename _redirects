@@ -1,0 +1,22 @@
+/api/enquiries /.netlify/functions/enquiries 200!
+# Force HTTPS — redirect all HTTP traffic to HTTPS
+http://kailashpatitourtravel.com/*  https://kailashpatitourtravel.com/:splat  301!
+http://www.kailashpatitourtravel.com/*  https://kailashpatitourtravel.com/:splat  301!
+
+# Redirect www to non-www
+https://www.kailashpatitourtravel.com/*  https://kailashpatitourtravel.com/:splat  301!
+
+# Block common attack paths that bots/hackers probe
+/wp-admin/*       /index.html  403!
+/wp-login.php     /index.html  403!
+/admin/*          /index.html  403!
+/.env             /index.html  403!
+/config.php       /index.html  403!
+/phpinfo.php      /index.html  403!
+/.git/*           /index.html  403!
+/shell.php        /index.html  403!
+/xmlrpc.php       /index.html  403!
+/backup/*         /index.html  403!
+/cgi-bin/*        /index.html  403!
+/.htaccess        /index.html  403!
+/etc/passwd       /index.html  403!
