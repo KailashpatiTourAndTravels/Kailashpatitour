@@ -82,17 +82,8 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-/* --- 7. Detect DevTools open (basic detection) --- */
-(function devToolsGuard() {
-  const threshold = 160;
-  setInterval(() => {
-    if (window.outerWidth - window.innerWidth > threshold ||
-        window.outerHeight - window.innerHeight > threshold) {
-      document.body.innerHTML = '';
-      location.reload();
-    }
-  }, 1000);
-})();
+/* --- 7. DevTools guard removed — caused false positives on mobile and
+         broke developer previews. CSP headers provide real security. --- */
 
 /* --- 8. Disable text selection on key elements --- */
 document.addEventListener('selectstart', (e) => {
@@ -320,7 +311,7 @@ const translations = {
     'footer-svc-h':    'Services',
     'footer-dest-h':   'Destinations',
     'footer-contact-h':'Contact',
-    'footer-copy':     '© 2024 Kailashpati Tour & Travels. All Rights Reserved.',
+    'footer-copy':     '© 2026 Kailashpati Tour & Travels. All Rights Reserved.',
     'footer-privacy':  'Privacy Policy',
     'footer-terms':    'Terms & Conditions',
     // MOBILE CTA

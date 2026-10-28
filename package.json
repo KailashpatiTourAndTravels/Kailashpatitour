@@ -10,12 +10,9 @@
     "publish:destinations": "node scripts/validate-destinations.mjs --publish",
     "test": "node --test",
     "predev": "node scripts/validate-destinations.mjs --publish",
-    "dev": "netlify dev --port 8888"
+    "dev": "npx serve ."
   },
   "dependencies": {
-    "@netlify/blobs": "^11.1.4"
-  },
-  "devDependencies": {
-    "netlify-cli": "^27.14.2"
+    "@upstash/redis": "^1.40.0"
   }
 }
