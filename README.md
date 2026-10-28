@@ -1,52 +1,33 @@
 # Kailashpati Tour & Travels
 
-Static brand website with a destination enquiry flow and a Netlify Functions backend. Enquiries are not bookings: the team confirms itinerary, availability and quotation manually.
+Kailashpati Tour & Travel is a Node.js-powered travel website for tour packages, pilgrimage trips, destination guides, and customized travel enquiries across India. The site helps visitors plan trips; submitting an enquiry is not a booking. The team confirms itinerary, availability, and quotation manually.
 
 ## Local setup
 
-Requirements: Node.js 22.13+ and npm. Install dependencies, link the directory to the existing Netlify site (needed for local Blobs access), then start the Netlify development server:
+Requirements: Node.js 22.13+ and npm.
 
 ```powershell
 npm install
-npx netlify login
-npx netlify link
 Copy-Item .env.example .env
+npm run validate:destinations
+npm test
 npm run dev
 ```
 
-Open `http://localhost:8888`. Do not use a basic static server to test submission: it cannot run the function or persist enquiries.
-
-Run the data validator and tests:
-
-```powershell
-npm run validate:destinations
-npm test
-```
+`npm run dev` serves the static site at `http://localhost:3000`. It does not run the serverless enquiry function, so use a deployed preview to verify enquiry submission. Keep real credentials in local `.env` or the hosting provider's environment settings; never commit `.env`.
 
 ## Destination data
 
-Edit `data/destinations.json`. `npm run publish:destinations` validates the records and writes the website dataset to `data/destinations.published.json`; Netlify runs the same publish step before deploy. Only verified records with an official HTTPS source and verification date are published. Supplied coordinates, distance, seasonal claims and images are checked when present. Images must be local under `images/` and include credit, license and source metadata. Keep unknown values `null`.
-
-The initial curated records include Baidyanath Dham, Netarhat, Betla National Park, Hundru Waterfall, Kedarnath, Badrinath, Rishikesh and Nainital. Each record links to a government or state tourism source. More destination research is needed to reach the Phase 1 target of 100–200 verified destinations. Unlisted states show a clear empty state and phone contact.
+Edit `data/destinations.json`. Run `npm run publish:destinations` to validate records and write `data/destinations.published.json`; the Netlify build runs the same publish step before deployment. Only verified records with an official HTTPS source and verification date are published. Keep unknown values `null`. Images must be local under `images/` and include credit, license, and source metadata.
 
 ## Enquiry flow and storage
 
-The browser collects state, a verified destination, start/end dates, customer name, WhatsApp number, optional email/travellers/requirements, and explicit contact consent. `/api/enquiries` rewrites to `netlify/functions/enquiries.mjs`, which validates the payload again, enforces same-origin requests, uses Netlify’s function rate limit, reserves an idempotency key, and saves a reference-numbered record in the site-wide `travel-enquiries` Netlify Blobs store. Netlify Blobs encrypt data at rest and in transit; the function exposes no read endpoint. Keep store access limited to the Netlify project team and set a retention policy for stored enquiries.
+The enquiry form collects the travel dates, customer contact details, destination, and consent. The serverless function validates the request and saves a reference-numbered enquiry. This repository includes deployment adapters for Netlify and Vercel. Vercel storage uses Upstash Redis; set `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` in the hosting environment. Netlify uses its configured function and Blobs integration. Do not expose credentials in client-side code.
 
-The store is in `ap-southeast-1` (Singapore) by default; set `BLOBS_REGION` if the project has a different data-residency requirement.
+## Owner notifications
 
-## Configure owner notifications
+Set `NOTIFICATION_METHOD` to `none`, `email`, `whatsapp`, or `both` in the hosting environment. For email, configure `RESEND_API_KEY`, `OWNER_EMAIL`, and a verified `EMAIL_FROM` sender. For WhatsApp Business Cloud API, configure the WhatsApp variables listed in `.env.example` and use an approved template. `OWNER_WHATSAPP` can also be used for the manual WhatsApp fallback. Notification delivery is separate from saving the enquiry; there is no automated quotation, payment, or booking confirmation.
 
-Copy `.env.example` to `.env` for local development and set the same values in Netlify Site configuration → Environment variables for production. Select `NOTIFICATION_METHOD=none`, `email`, `whatsapp` or `both`.
+## Deployment
 
-- **Email:** set `RESEND_API_KEY`, `OWNER_EMAIL` and a verified `EMAIL_FROM` sender. Credentials remain server-side.
-- **WhatsApp API:** set `WHATSAPP_ACCESS_TOKEN`, `WHATSAPP_PHONE_NUMBER_ID`, `WHATSAPP_API_VERSION`, `OWNER_WHATSAPP`, `WHATSAPP_TEMPLATE_NAME` and `WHATSAPP_TEMPLATE_LANGUAGE`. The approved WhatsApp Business template body needs 12 sequential text placeholders for the enquiry reference, timestamp, customer details, destination, dates, duration, travellers and requirements.
-- **Manual WhatsApp fallback:** set `OWNER_WHATSAPP`. If automatic notification is not sent, the form provides a prefilled message link. The customer must review and press Send in WhatsApp; the site never says that fallback messages were delivered.
-
-Successful storage is confirmed independently from notification delivery. Notification failures are logged by reference and the saved enquiry remains available in Netlify Blobs. There is no automated quotation, payment or booking confirmation.
-
-## Deployment and remaining setup
-
-Deploy this directory to Netlify so the configured function and persistent Blobs store are available. Before accepting real enquiries, link the correct Netlify site, set notification environment variables and test delivery with the owner. Create and approve the WhatsApp template if that channel is selected. No provider credentials are present in this repository, so automatic email/WhatsApp delivery is not enabled by default.
-
-The public source fields and association for the initial records were checked against the linked official sources in `data/destinations.json`. No coordinates, road distances, seasons or destination photos are published until those values and image rights are verified.
+The repository contains `netlify.toml` and `vercel.json` deployment configuration. Run the destination validator before deploying and configure the storage and notification environment variables in the selected hosting provider. Confirm that the enquiry endpoint and notification setup work in a preview before accepting real enquiries.
