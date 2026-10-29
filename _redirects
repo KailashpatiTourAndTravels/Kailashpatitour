@@ -1,4 +1,10 @@
-﻿/api/enquiries /.netlify/functions/enquiries 200!
+/api/enquiries /.netlify/functions/enquiries 200!
+
+# Service pages — clean URLs
+/taxi-service-deoghar          /taxi-service-deoghar.html        200
+/baidyanath-dham-taxi          /baidyanath-dham-taxi.html        200
+/force-urbania-rental-deoghar  /force-urbania-rental-deoghar.html 200
+
 # Force HTTPS — redirect all HTTP traffic to HTTPS
 http://kailashpatitourandtravels.com/*  https://kailashpatitourandtravels.com/:splat  301!
 http://www.kailashpatitourandtravels.com/*  https://kailashpatitourandtravels.com/:splat  301!

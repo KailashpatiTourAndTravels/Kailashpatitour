@@ -706,18 +706,17 @@ document.addEventListener('DOMContentLoaded', () => {
         tempo: 'Tempo Traveller'
       };
       const preferredVehicle = vehicleLabels[vehicle] || 'Any / not selected';
-      // Use Unicode escapes so editors or deployment tooling cannot corrupt emoji bytes.
       const emoji = {
-        mountain: '\u{1F3D4}\uFE0F', car: '\u{1F697}', sparkle: '\u2728',
-        crown: '\u{1F451}', foldedHands: '\u{1F64F}', handshake: '\u{1F91D}',
-        pin: '\u{1F4CD}', finish: '\u{1F3C1}', calendar: '\u{1F4C5}',
-        vehicle: '\u{1F697}', gem: '\u{1F48E}'
+        mountain: '🏔️', car: '🚗', sparkle: '✨',
+        crown: '👑', foldedHands: '🙏', handshake: '🤝',
+        pin: '📍', finish: '🏁', calendar: '📅',
+        vehicle: '🚗', gem: '💎'
       };
       const message = [
         `${emoji.mountain} *KAILASHPATI TOUR & TRAVELS* ${emoji.car}`,
         `${emoji.sparkle} *Travel with Comfort. Travel with Faith.*`,
         '━━━━━━━━━━━━━━━━━━',
-        `${emoji.crown} *CAB BOOKING ENQUIRY*`,
+        `${emoji.crown} *VEHICLE BOOKING ENQUIRY*`,
         '━━━━━━━━━━━━━━━━━━',
         '',
         `${emoji.foldedHands} Hello Team Kailashpati!`,
@@ -788,7 +787,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const msg = encodeURIComponent(
         `Hello Kailashpati Tour & Travels!\n\nBooking Request:\n👤 Name: ${name}\n📞 Phone: ${phone}\n📍 From: ${from || 'N/A'}\n📍 To: ${to || 'N/A'}\n📅 Date: ${date || 'N/A'}\n🚗 Vehicle: ${vehicle || 'N/A'}\n📝 Notes: ${notes || 'None'}\n\nPlease confirm. धन्यवाद!`
       );
-      window.open(`https://wa.me/919135839746?text=${msg}`, '_blank');
+      window.open(`https://wa.me/919973513731?text=${msg}`, '_blank');
       showToast(currentLang === 'hi' ? 'व्हाट्सएप पर रीडायरेक्ट हो रहे हैं! 🎉' : 'Redirecting to WhatsApp! 🎉', 'success');
       contactForm.reset();
       document.querySelectorAll('input[type="date"]').forEach(i => i.value = today);
