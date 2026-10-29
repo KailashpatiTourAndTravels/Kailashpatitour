@@ -27,9 +27,32 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-    .sp-hero{background:linear-gradient(135deg,#0f1b2d 0%,#1a3a5c 100%);color:#fff;padding:80px 20px 60px;text-align:center}
-    .sp-hero h1{font-size:2.2rem;margin-bottom:12px}
-    .sp-hero p{font-size:1.1rem;opacity:.9;max-width:700px;margin:0 auto 24px}
+    :root{--taxi-navy:#061b2e;--taxi-deep:#031426;--taxi-orange:#ff6b00;--taxi-gold:#ffa500;--taxi-light:#e2e8f0}
+    body.taxi-landing-page{margin:0;color:var(--taxi-navy);font-family:'Poppins',sans-serif}
+    .taxi-header{height:90px;padding:0 clamp(20px,6.2vw,112px);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;background:#fff;position:relative;z-index:2}
+    .taxi-header-logo{display:inline-flex;align-items:center;justify-self:start}
+    .taxi-header-logo img{display:block;width:204px;height:auto;max-height:76px;object-fit:contain}
+    .taxi-home-link{grid-column:2;color:var(--taxi-orange);font-size:25px;font-weight:700;text-decoration:none;line-height:1;padding:12px 0 14px;position:relative}
+    .taxi-home-link::after{content:"";position:absolute;height:3px;width:100%;left:0;bottom:0;background:var(--taxi-orange)}
+    .taxi-home-link:hover{color:#d95300}
+    .taxi-home-link:focus-visible,.taxi-book-button:focus-visible,.taxi-header-logo:focus-visible{outline:3px solid var(--taxi-gold);outline-offset:5px;border-radius:4px}
+    .taxi-hero{position:relative;isolation:isolate;min-height:610px;height:min(680px,calc(100svh - 90px));color:#fff;background:var(--taxi-deep);display:flex;align-items:center;padding:48px clamp(28px,6.7vw,124px) 142px;overflow:hidden}
+    .taxi-hero-image,.taxi-hero-overlay{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+    .taxi-hero-image{object-fit:cover;object-position:center 47%}
+    .taxi-hero-overlay{background:linear-gradient(90deg,rgba(3,20,38,.94) 0%,rgba(3,20,38,.78) 34%,rgba(3,20,38,.34) 65%,rgba(3,20,38,.08) 100%),linear-gradient(0deg,rgba(3,20,38,.5),transparent 45%)}
+    .taxi-hero-content{width:min(100%,750px);position:relative;z-index:1}
+    .taxi-hero h1{font-family:Georgia,'Times New Roman',serif;font-size:clamp(4rem,5.2vw,5rem);line-height:.98;letter-spacing:-1.5px;margin:0 0 22px;font-weight:700;color:#fff}
+    .taxi-hero h1 span{display:block;color:var(--taxi-gold)}
+    .taxi-hero h1::after{content:"";display:block;width:110px;height:3px;background:var(--taxi-orange);margin-top:20px}
+    .taxi-hero-copy{max-width:620px;font-size:1.35rem;line-height:1.5;color:#f8fafc;margin:0 0 26px}
+    .taxi-services{display:flex;align-items:center;flex-wrap:wrap;gap:13px 0;margin:0 0 25px;padding:0;list-style:none}
+    .taxi-services li{min-height:44px;display:flex;align-items:center;gap:11px;padding:0 14px;border-right:1px solid rgba(255,255,255,.25)}
+    .taxi-services li:first-child{padding-left:0}.taxi-services li:last-child{border:0}
+    .taxi-service-icon{width:43px;height:43px;flex:0 0 43px;display:grid;place-items:center;border-radius:50%;color:var(--taxi-gold);background:rgba(3,20,38,.62);border:1px solid rgba(255,165,0,.32);font-size:1.15rem}
+    .taxi-service-text{display:grid;gap:2px;white-space:nowrap}.taxi-service-text strong{font-size:.88rem;color:#fff}.taxi-service-text small{font-size:.72rem;color:var(--taxi-light)}
+    .taxi-book-button{min-height:78px;min-width:390px;padding:0 38px;border-radius:999px;background:var(--taxi-orange);color:#fff;display:inline-flex;align-items:center;justify-content:center;gap:14px;text-decoration:none;font-size:1.3rem;font-weight:700;box-shadow:0 8px 22px rgba(255,107,0,.32);transition:background .2s ease,transform .2s ease,box-shadow .2s ease}
+    .taxi-book-button:hover{background:#f05d00;transform:translateY(-2px);box-shadow:0 11px 26px rgba(255,107,0,.42)}
+    .sp-hero{display:none}
     .sp-breadcrumb{font-size:.85rem;opacity:.7;margin-bottom:20px}
     .sp-breadcrumb a{color:#f9c74f;text-decoration:none}
     .sp-content{max-width:900px;margin:0 auto;padding:40px 20px}
@@ -50,6 +73,10 @@
     .sp-price-table th,.sp-price-table td{padding:12px 16px;text-align:left;border-bottom:1px solid #e0e0e0}
     .sp-price-table th{background:#1a3a5c;color:#fff}
     .sp-price-table tr:hover{background:#f5f5f5}
+    @media(max-width:1100px){.taxi-header{padding-inline:36px}.taxi-hero{padding-inline:48px}.taxi-hero h1{font-size:clamp(3.6rem,6.5vw,4.7rem)}.taxi-services li{padding-inline:9px;gap:8px}.taxi-service-icon{width:38px;height:38px;flex-basis:38px}}
+    @media(max-width:760px){.taxi-header{height:74px;padding-inline:18px}.taxi-header-logo img{width:165px;max-height:62px}.taxi-home-link{font-size:20px;padding:10px 0 12px}.taxi-hero{height:auto;min-height:610px;padding:58px 22px 48px;align-items:flex-start}.taxi-hero-image{object-position:59% center}.taxi-hero-overlay{background:linear-gradient(90deg,rgba(3,20,38,.91),rgba(3,20,38,.69) 65%,rgba(3,20,38,.38)),linear-gradient(0deg,rgba(3,20,38,.68),transparent 75%)}.taxi-hero-content{width:100%}.taxi-hero h1{font-size:clamp(3.2rem,11vw,4.5rem);letter-spacing:-1px;margin-bottom:17px}.taxi-hero h1::after{margin-top:15px}.taxi-hero-copy{font-size:1.08rem;line-height:1.48;margin-bottom:22px}.taxi-services{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 9px;margin-bottom:23px}.taxi-services li,.taxi-services li:first-child{padding:0;border:0;gap:8px}.taxi-service-icon{width:38px;height:38px;flex-basis:38px;font-size:1rem}.taxi-service-text strong{font-size:.78rem}.taxi-service-text small{font-size:.65rem}.taxi-book-button{width:min(100%,420px);min-width:0;min-height:62px;padding-inline:18px;font-size:1.05rem}}
+    @media(max-width:380px){.taxi-header{padding-inline:12px}.taxi-header-logo img{width:145px}.taxi-home-link{font-size:18px}.taxi-hero{padding-inline:17px;min-height:610px}.taxi-hero h1{font-size:clamp(2.8rem,11vw,3.3rem)}}
+    @media(prefers-reduced-motion:reduce){.taxi-book-button{transition:none}}
   </style>
 
   <script type="application/ld+json">
@@ -79,20 +106,31 @@
   }
   </script>
 </head>
-<body>
+<body class="taxi-landing-page">
 
-<section class="sp-hero">
-  <div class="sp-breadcrumb">
-    <a href="/">Home</a> &raquo; Baidyanath Dham Taxi
-  </div>
-  <h1>🙏 Baidyanath Dham Taxi Booking</h1>
-  <p>Comfortable and affordable taxi service for Baba Baidyanath Dham Temple darshan in Deoghar. Book a sedan or Urbania for your spiritual journey.</p>
-  <a href="https://wa.me/919973513731?text=Hello%2C%20I%20want%20to%20book%20a%20taxi%20for%20Baidyanath%20Dham%20darshan" class="btn btn-whatsapp" style="display:inline-block;padding:14px 32px;border-radius:50px;font-weight:600;text-decoration:none;background:#25d366;color:#fff;font-size:1rem" target="_blank">
-    <i class="fab fa-whatsapp"></i> Book for Darshan
+<header class="taxi-header">
+  <a class="taxi-header-logo" href="/" aria-label="Kailashpati Tour & Travels home">
+    <img src="/images/logo.jpg" alt="Kailashpati Tour & Travels" />
   </a>
-</section>
+  <a class="taxi-home-link" href="/">Home</a>
+</header>
 
-<img src="/images/baidyanath_dham.jpg" alt="Baba Baidyanath Dham Temple Deoghar - Kailashpati Tour and Travels" class="sp-img-full" />
+<main>
+<section class="taxi-hero" aria-labelledby="taxi-hero-title">
+  <img class="taxi-hero-image" src="/images/baidyanath_dham.jpg" alt="Baba Baidyanath Dham temple complex in Deoghar at sunset" fetchpriority="high" />
+  <div class="taxi-hero-overlay" aria-hidden="true"></div>
+  <div class="taxi-hero-content">
+    <h1 id="taxi-hero-title">Baidyanath Dham<span>Taxi Booking</span></h1>
+    <p class="taxi-hero-copy">Comfortable and affordable taxi service for Baba Baidyanath Dham Temple darshan.</p>
+    <ul class="taxi-services" aria-label="Taxi services">
+      <li><span class="taxi-service-icon" aria-hidden="true"><i class="fas fa-car-side"></i></span><span class="taxi-service-text"><strong>Local Taxi</strong><small>Deoghar & Nearby</small></span></li>
+      <li><span class="taxi-service-icon" aria-hidden="true"><i class="fas fa-place-of-worship"></i></span><span class="taxi-service-text"><strong>Temple Darshan</strong><small>Hassle Free Travel</small></span></li>
+      <li><span class="taxi-service-icon" aria-hidden="true"><i class="fas fa-users"></i></span><span class="taxi-service-text"><strong>Group Travel</strong><small>For Family & Friends</small></span></li>
+      <li><span class="taxi-service-icon" aria-hidden="true"><i class="fas fa-location-dot"></i></span><span class="taxi-service-text"><strong>Outstation Trips</strong><small>Across Jharkhand & Beyond</small></span></li>
+    </ul>
+    <a class="taxi-book-button" href="/#booking-form"><i class="fas fa-car-side" aria-hidden="true"></i><span>Book Your Taxi Now</span><i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+  </div>
+</section>
 
 <section class="sp-content">
 
@@ -140,6 +178,7 @@
     <li>🌐 <strong>Online</strong>: <a href="/">Book from our website</a></li>
   </ul>
 </section>
+</main>
 
 <section class="sp-cta">
   <h2>Plan Your Baidyanath Dham Darshan Today</h2>

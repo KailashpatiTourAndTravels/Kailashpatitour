@@ -34,6 +34,46 @@ function cleanMessageValue(str) {
     .substring(0, 500);
 }
 
+function formatJourneyDate(value) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value || '')) return '';
+  const [year, month, day] = value.split('-').map(Number);
+  const date = new Date(Date.UTC(year, month - 1, day));
+  if (date.getUTCFullYear() !== year || date.getUTCMonth() !== month - 1 || date.getUTCDate() !== day) return '';
+  return new Intl.DateTimeFormat('en-GB', {
+    day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC'
+  }).format(date);
+}
+
+function buildBookingWhatsappMessage({ pickup, destination, journeyDate, vehicle }) {
+  return [
+    '🙏 *NAMASTE FROM KAILASHPATI TOUR & TRAVELS!*',
+    '',
+    'Thank you for choosing us for your journey. We are happy to assist you with a comfortable and reliable travel experience.',
+    '',
+    '🚕 *YOUR TRAVEL DETAILS*',
+    '',
+    `📍 *Pick-up Location:* ${pickup}`,
+    `📍 *Destination:* ${destination}`,
+    `📅 *Journey Date:* ${journeyDate}`,
+    `🚘 *Preferred Vehicle:* ${vehicle}`,
+    '',
+    '━━━━━━━━━━━━━━━━━━━━',
+    '',
+    '📋 *KINDLY CONFIRM*',
+    '',
+    'Please confirm vehicle availability and share the estimated fare for this journey.',
+    '',
+    'Thank you for your enquiry. We look forward to making your journey safe, comfortable and memorable.',
+    '',
+    'Warm regards,',
+    '*Kailashpati Tour & Travels*',
+    '',
+    '*Your Journey, Our Commitment.*',
+    '',
+    'ℹ️ This is a booking enquiry, not a confirmed reservation.'
+  ].join('\n');
+}
+
 /* --- 2. Honeypot Bot Checker: bots fill hidden fields, humans don't --- */
 function isBot() {
   const h1 = document.getElementById('_honey');
@@ -124,30 +164,44 @@ const translations = {
     'nav-destinations': 'Destinations',
     'nav-pricing':      'Pricing',
     'nav-about':        'About Us',
+    'nav-contact':      'Contact Us',
     'nav-book':         'Book Now',
     // HERO
-    'hero-badge':       'Pleasant Journey, Excellent Service',
-    'hero-h1':          'Kailashpati Tour & Travels',
-    'hero-sub':         'Comfortable Journey, Memorable Experience',
-    'hero-tagline':     'Kanyakumari to Kashmir – Travel safely with us',
+    'hero-badge':       'Baba Baidyanath Dham, Deoghar',
+    'hero-title-line1': 'Kailashpati',
+    'hero-title-line2': 'Tour & Travels',
+    'hero-sub':         'Your Trusted Travel Partner in Deoghar',
+    'hero-tagline':     'Comfortable journeys and reliable service across Deoghar and nearby destinations.',
+    'hero-service-taxi': 'Taxi Service',
+    'hero-service-pilgrimage': 'Pilgrimage Tours',
+    'hero-service-group': 'Group Travel',
+    'hero-service-trips': 'Local & Outstation Trips',
     'hero-btn-call':    'Call to Book',
-    'hero-btn-wa':      'WhatsApp',
+    'hero-btn-book':    'Plan Your Journey',
     'stat-customers':   'Happy Customers',
     'stat-experience':  'Years Experience',
     'stat-available':   'Available',
     'stat-destinations':'Destinations',
     // BOOKING FORM
-    'label-from':   'From',
-    'label-to':     'To',
-    'label-date':   'Date',
-    'label-vehicle':'Vehicle',
+    'label-from':   'Pickup Location',
+    'label-to':     'Destination',
+    'label-date':   'Travel Date',
+    'label-vehicle':'Vehicle Type',
     'btn-search':   'Search & Book',
     'ph-from':      'Deoghar',
-    'ph-to':        'Destination',
+    'ph-to':        'Select destination',
     'opt-select':   'Select Vehicle',
-    'opt-sedan':    '4-Wheeler (Sedan)',
-    'opt-urbania':  'Urbania 17-Seater',
-    'opt-tempo':    'Tempo Traveller',
+    'opt-sedan':    'Sedan',
+    'opt-urbania':  'Force Urbania',
+    // TRUST STRIP
+    'benefit-safe-title': 'Safe & Reliable',
+    'benefit-safe-copy': 'Your safety is our priority',
+    'benefit-driver-title': 'Experienced Drivers',
+    'benefit-driver-copy': 'Professional and courteous',
+    'benefit-price-title': 'Transparent Pricing',
+    'benefit-price-copy': 'No hidden charges',
+    'benefit-support-title': '24/7 Support',
+    'benefit-support-copy': 'Always here to help',
     // FEATURES
     'feat1-title':  'Full AC',
     'feat1-sub':    'All vehicles fully air-conditioned',
@@ -160,11 +214,18 @@ const translations = {
     'feat5-title':  'Booking Gift',
     'feat5-sub':    'Free gift on every booking!',
     // VEHICLES SECTION
-    'vehicles-tag': 'Our Fleet',
-    'vehicles-h2':  'Our Premium Vehicles',
-    'vehicles-p':   'Choose the perfect vehicle for your journey — comfort and safety guaranteed',
+    'vehicles-tag': 'Our Vehicles',
+    'vehicles-h2':  'Choose Your Ride',
+    'vehicles-p':   'Comfortable and reliable vehicles for your journey',
+    'sedan-description': 'Comfortable for small families and personal trips',
+    'sedan-seats': '4 seats',
+    'urbania-description': 'Spacious and comfortable for group travel',
+    'urbania-seats': '17 seats',
+    'vehicle-ac': 'Air-conditioned',
+    'sedan-book': 'Book Sedan',
+    'urbania-book': 'Book Force Urbania',
     'urbania-badge':'Most Popular',
-    'urbania-h3':   'Force Urbania 440',
+    'urbania-h3':   'Force Urbania',
     'urbania-tag':  '17-Seater Luxury Tempo Traveller',
     'urbania-f1':   '<strong>Full AC</strong> — Fully air-conditioned',
     'urbania-f2':   '<strong>17 Comfortable Seats</strong> — Spacious seating',
@@ -175,7 +236,7 @@ const translations = {
     'urbania-gift': '<strong style="color:#e85d04">Get a Guaranteed Gift on Booking 🎁</strong>',
     'urbania-price':'Starting from <strong>₹34/km</strong>',
     'urbania-btn':  'Book Urbania — 9135839746',
-    'sedan-h3':     '4-Wheeler Sedan',
+    'sedan-h3':     'Sedan',
     'sedan-tag':    'Wedding & Local Visits | Comfortable Family Car',
     'sedan-f1':     '<strong>Full AC</strong> — Comfortable seating',
     'sedan-f2':     '<strong>Wedding Functions</strong> — Marriage ceremonies',
@@ -329,30 +390,44 @@ const translations = {
     'nav-destinations': 'गंतव्य',
     'nav-pricing':      'मूल्य',
     'nav-about':        'हमारे बारे में',
+    'nav-contact':      'संपर्क करें',
     'nav-book':         'अभी बुक करें',
     // HERO
-    'hero-badge':       'यात्रा सुखद, सेवा उत्कृष्ट',
-    'hero-h1':          'कैलाशपति टूर एंड ट्रैवल्स',
-    'hero-sub':         'आरामदायक यात्रा, यादगार अनुभव',
-    'hero-tagline':     'कन्याकुमारी से कश्मीर तक – हमारे साथ सुरक्षित सफर',
+    'hero-badge':       'बाबा बैद्यनाथ धाम, देवघर',
+    'hero-title-line1': 'कैलाशपति',
+    'hero-title-line2': 'टूर एंड ट्रैवल्स',
+    'hero-sub':         'देवघर में आपका भरोसेमंद ट्रैवल पार्टनर',
+    'hero-tagline':     'देवघर और आसपास के गंतव्यों के लिए आरामदायक यात्रा और भरोसेमंद सेवा।',
+    'hero-service-taxi': 'टैक्सी सेवा',
+    'hero-service-pilgrimage': 'तीर्थ यात्रा',
+    'hero-service-group': 'ग्रुप यात्रा',
+    'hero-service-trips': 'लोकल और आउटस्टेशन यात्रा',
     'hero-btn-call':    'कॉल करें बुकिंग के लिए',
-    'hero-btn-wa':      'व्हाट्सएप',
+    'hero-btn-book':    'अपनी यात्रा की योजना बनाएं',
     'stat-customers':   'खुश ग्राहक',
     'stat-experience':  'वर्षों का अनुभव',
     'stat-available':   'उपलब्ध',
     'stat-destinations':'गंतव्य',
     // BOOKING FORM
-    'label-from':   'यहाँ से',
-    'label-to':     'यहाँ तक',
-    'label-date':   'तारीख',
-    'label-vehicle':'वाहन',
+    'label-from':   'पिकअप स्थान',
+    'label-to':     'गंतव्य',
+    'label-date':   'यात्रा की तारीख',
+    'label-vehicle':'वाहन का प्रकार',
     'btn-search':   'खोजें और बुक करें',
     'ph-from':      'देवघर',
     'ph-to':        'गंतव्य',
     'opt-select':   'वाहन चुनें',
-    'opt-sedan':    '4-व्हीलर (सेडान)',
-    'opt-urbania':  'अर्बानिया 17-सीटर',
-    'opt-tempo':    'टेम्पो ट्रैवलर',
+    'opt-sedan':    'सेडान',
+    'opt-urbania':  'फोर्स अर्बानिया',
+    // TRUST STRIP
+    'benefit-safe-title': 'सुरक्षित और भरोसेमंद',
+    'benefit-safe-copy': 'आपकी सुरक्षा हमारी प्राथमिकता है',
+    'benefit-driver-title': 'अनुभवी ड्राइवर',
+    'benefit-driver-copy': 'पेशेवर और विनम्र',
+    'benefit-price-title': 'पारदर्शी किराया',
+    'benefit-price-copy': 'कोई छिपा हुआ शुल्क नहीं',
+    'benefit-support-title': '24/7 सहायता',
+    'benefit-support-copy': 'हम हमेशा मदद के लिए उपलब्ध हैं',
     // FEATURES
     'feat1-title':  'पूर्ण एसी',
     'feat1-sub':    'सभी वाहन पूरी तरह वातानुकूलित',
@@ -365,11 +440,18 @@ const translations = {
     'feat5-title':  'बुकिंग उपहार',
     'feat5-sub':    'हर बुकिंग पर मुफ्त उपहार!',
     // VEHICLES SECTION
-    'vehicles-tag': 'हमारा बेड़ा',
-    'vehicles-h2':  'हमारे प्रीमियम वाहन',
-    'vehicles-p':   'अपनी यात्रा के लिए सही वाहन चुनें — आराम और सुरक्षा की गारंटी',
+    'vehicles-tag': 'हमारे वाहन',
+    'vehicles-h2':  'अपनी सवारी चुनें',
+    'vehicles-p':   'आपकी यात्रा के लिए आरामदायक और भरोसेमंद वाहन',
+    'sedan-description': 'छोटे परिवारों और निजी यात्राओं के लिए आरामदायक',
+    'sedan-seats': '4 सीटें',
+    'urbania-description': 'ग्रुप यात्रा के लिए विशाल और आरामदायक',
+    'urbania-seats': '17 सीटें',
+    'vehicle-ac': 'वातानुकूलित',
+    'sedan-book': 'सेडान बुक करें',
+    'urbania-book': 'फोर्स अर्बानिया बुक करें',
     'urbania-badge':'सबसे लोकप्रिय',
-    'urbania-h3':   'फोर्स अर्बानिया 440',
+    'urbania-h3':   'फोर्स अर्बानिया',
     'urbania-tag':  '17-सीटर लक्जरी टेम्पो ट्रैवलर',
     'urbania-f1':   '<strong>पूर्ण एसी</strong> — पूर्ण वातानुकूलित सुविधा',
     'urbania-f2':   '<strong>17 आरामदायक सीटें</strong> — विशाल बैठने की जगह',
@@ -380,7 +462,7 @@ const translations = {
     'urbania-gift': '<strong style="color:#e85d04">गाड़ी बुकिंग करने पर पाएं निश्चित उपहार 🎁</strong>',
     'urbania-price':'शुरुआत <strong>₹34/किमी</strong> से',
     'urbania-btn':  'अर्बानिया बुक करें — 9135839746',
-    'sedan-h3':     '4-व्हीलर सेडान',
+    'sedan-h3':     'सेडान',
     'sedan-tag':    'शादी एवं लोकल विजिट के लिए | आरामदायक फैमिली कार',
     'sedan-f1':     '<strong>पूर्ण एसी</strong> — आरामदायक सीटें',
     'sedan-f2':     '<strong>शादी समारोह</strong> — विवाह समारोह',
@@ -628,12 +710,17 @@ document.addEventListener('DOMContentLoaded', () => {
   toggle.addEventListener('click', () => {
     toggle.classList.toggle('open');
     nav.classList.toggle('open');
-    document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+    const isOpen = nav.classList.contains('open');
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    toggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+    document.body.style.overflow = isOpen ? 'hidden' : '';
   });
   navLinks.forEach(link => {
     link.addEventListener('click', () => {
       toggle.classList.remove('open');
       nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open navigation menu');
       document.body.style.overflow = '';
     });
   });
@@ -641,6 +728,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (nav.classList.contains('open') && !nav.contains(e.target) && !toggle.contains(e.target)) {
       toggle.classList.remove('open');
       nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open navigation menu');
       document.body.style.overflow = '';
     }
   });
@@ -661,7 +750,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ── DATE INPUTS: set min = today ─────────────────────
-  const today = new Date().toISOString().split('T')[0];
+  const now = new Date();
+  const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
   document.querySelectorAll('#booking-form input[type="date"]').forEach(input => {
     input.setAttribute('min', today);
     input.value = today;
@@ -673,6 +763,8 @@ document.addEventListener('DOMContentLoaded', () => {
     bookingForm.addEventListener('submit', (e) => {
       e.preventDefault();
 
+      if (!bookingForm.reportValidity()) return;
+
       // 🔒 Security checks
       if (isBot()) return; // honeypot triggered = bot
       if (!rateLimitOk()) {
@@ -681,67 +773,25 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // Sanitize all inputs
-      const from    = cleanMessageValue(document.getElementById('from').value);
-      const to      = cleanMessageValue(document.getElementById('to').value);
-      const date    = cleanMessageValue(document.getElementById('date').value);
-      const vehicle = cleanMessageValue(document.getElementById('vehicle-type').value);
+      const from = cleanMessageValue(document.getElementById('from').value);
+      const to = cleanMessageValue(document.getElementById('to').value);
+      const date = document.getElementById('date').value;
+      const vehicle = document.getElementById('vehicle-type').value;
+      const journeyDate = formatJourneyDate(date);
+      const vehicleLabels = { sedan: 'Sedan', urbania: 'Force Urbania' };
+      const preferredVehicle = vehicleLabels[vehicle];
 
-      if (!from || !to) {
-        showToast(currentLang === 'hi' ? 'कृपया पिकअप और ड्रॉप स्थान दर्ज करें!' : 'Please enter pickup and drop locations!', 'error');
+      if (!from || !to || !journeyDate || !preferredVehicle) {
+        showToast(currentLang === 'hi' ? 'कृपया पिकअप, गंतव्य, तारीख और वाहन चुनें।' : 'Please enter your pickup, destination, travel date, and vehicle.', 'error');
         return;
       }
 
-      // Format the date from its numeric parts so it is displayed in local time.
-      const journeyDate = date
-        ? (() => {
-            const [year, month, day] = date.split('-').map(Number);
-            return new Date(year, month - 1, day).toLocaleDateString('en-IN', {
-              day: 'numeric', month: 'long', year: 'numeric'
-            });
-          })()
-        : 'Not specified';
-      const vehicleLabels = {
-        sedan: 'Sedan (4-wheeler)',
-        urbania: 'Urbania 17-Seater',
-        tempo: 'Tempo Traveller'
-      };
-      const preferredVehicle = vehicleLabels[vehicle] || 'Any / not selected';
-      const emoji = {
-        mountain: '🏔️', car: '🚗', sparkle: '✨',
-        crown: '👑', foldedHands: '🙏', handshake: '🤝',
-        pin: '📍', finish: '🏁', calendar: '📅',
-        vehicle: '🚗', gem: '💎'
-      };
-      const message = [
-        `${emoji.mountain} *KAILASHPATI TOUR & TRAVELS* ${emoji.car}`,
-        `${emoji.sparkle} *Travel with Comfort. Travel with Faith.*`,
-        '━━━━━━━━━━━━━━━━━━',
-        `${emoji.crown} *VEHICLE BOOKING ENQUIRY*`,
-        '━━━━━━━━━━━━━━━━━━',
-        '',
-        `${emoji.foldedHands} Hello Team Kailashpati!`,
-        'I would like to enquire about booking a cab for my upcoming journey. Please find my travel details below.',
-        '',
-        `${emoji.pin} *PICK-UP LOCATION*`,
-        `└ ${from}`,
-        `${emoji.finish} *DESTINATION*`,
-        `└ ${to}`,
-        `${emoji.calendar} *JOURNEY DATE*`,
-        `└ ${journeyDate}`,
-        `${emoji.vehicle} *PREFERRED VEHICLE*`,
-        `└ ${preferredVehicle}`,
-        '━━━━━━━━━━━━━━━━━━',
-        `${emoji.gem} *REQUEST FOR CONFIRMATION*`,
-        '━━━━━━━━━━━━━━━━━━',
-        '',
-        'Kindly confirm the vehicle availability and share the estimated fare for my journey.',
-        `${emoji.handshake} Thank you for choosing to assist me! I look forward to a safe, comfortable and memorable travel experience with *Kailashpati Tour & Travels.*`,
-        `${emoji.foldedHands} *Your Journey, Our Commitment.*`,
-        `${emoji.mountain} *KAILASHPATI TOUR & TRAVELS*`,
-        `${emoji.sparkle} *Explore • Travel • Experience*`,
-        '',
-        '_This is a booking enquiry, not a confirmed reservation._'
-      ].join('\n');
+      const message = buildBookingWhatsappMessage({
+        pickup: from,
+        destination: to,
+        journeyDate,
+        vehicle: preferredVehicle
+      });
       const ownerPhone = (bookingForm.dataset.whatsappRecipient || '').replace(/\D/g, '');
       if (!/^\d{10,15}$/.test(ownerPhone)) {
         showToast(currentLang === 'hi' ? 'व्हाट्सएप नंबर उपलब्ध नहीं है।' : 'WhatsApp recipient is not configured.', 'error');
@@ -751,6 +801,17 @@ document.addEventListener('DOMContentLoaded', () => {
       window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
     });
   }
+
+  // Fleet buttons select their vehicle and move the visitor to the existing WhatsApp enquiry form.
+  document.querySelectorAll('[data-book-vehicle]').forEach(button => {
+    button.addEventListener('click', () => {
+      const vehicleSelect = document.getElementById('vehicle-type');
+      const destinationInput = document.getElementById('to');
+      vehicleSelect.value = button.dataset.bookVehicle;
+      document.getElementById('booking').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      window.setTimeout(() => destinationInput.focus({ preventScroll: true }), 350);
+    });
+  });
 
   // ── CONTACT FORM — SECURED ────────────────────────────
   const contactForm = document.getElementById('contact-form');

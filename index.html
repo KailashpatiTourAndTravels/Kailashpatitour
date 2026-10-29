@@ -28,6 +28,7 @@
   <!-- ======================================= -->
 
   <link rel="stylesheet" href="style.css" />
+  <link rel="preload" as="image" href="images/hero_van.jpg" fetchpriority="high" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet" />
@@ -109,9 +110,9 @@
     <div class="topbar-right">
       <a href="tel:+919135839746"><i class="fas fa-phone"></i> +91-9135839746</a>
       <a href="tel:+919973513731"><i class="fas fa-phone"></i> +91-9973513731</a>
-      <a href="https://wa.me/919973513731" target="_blank"><i class="fab fa-whatsapp"></i></a>
-      <a href="https://instagram.com/kailashpatitourandtravel" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://www.facebook.com/share/1CbWrSrzbw/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://wa.me/919973513731" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://instagram.com/kailashpatitourandtravel" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.facebook.com/share/1CbWrSrzbw/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
 
       <!-- ===== LANGUAGE TOGGLE ===== -->
       <div class="lang-toggle" role="group" aria-label="Choose language">
@@ -129,14 +130,14 @@
 <!-- ===== NAVBAR ===== -->
 <header id="navbar">
   <div class="container navbar-inner">
-    <a href="#" class="logo-wrap">
+    <a href="#home" class="logo-wrap">
       <img src="images/logo.jpg" alt="Kailashpati Tour and Travels Logo" class="logo-img" />
       <div class="logo-text">
         <span class="logo-main">कैलाशपति</span>
         <span class="logo-sub">Tour &amp; Travels</span>
       </div>
     </a>
-    <nav id="main-nav">
+    <nav id="main-nav" aria-label="Main navigation">
       <ul>
         <li><a href="#home"     data-i18n="nav-home">Home</a></li>
         <li><a href="#vehicles" data-i18n="nav-vehicles">Our Vehicles</a></li>
@@ -144,10 +145,15 @@
         <li><a href="#destinations" data-i18n="nav-destinations">Destinations</a></li>
         <li><a href="#pricing"  data-i18n="nav-pricing">Pricing</a></li>
         <li><a href="#about"    data-i18n="nav-about">About Us</a></li>
-        <li><a href="#contact" class="nav-cta" data-i18n="nav-book">Book Now</a></li>
+        <li><a href="#contact" data-i18n="nav-contact">Contact Us</a></li>
       </ul>
     </nav>
-    <button id="menu-toggle" aria-label="Toggle menu">
+    <a href="/baidyanath-dham-taxi.html" class="header-temple-link" aria-label="Baidyanath Dham Taxi">
+      <i class="fas fa-place-of-worship header-temple-icon" aria-hidden="true"></i>
+      <span class="header-temple-label"><span>Baidyanath Dham</span><span>Taxi</span></span>
+    </a>
+    <a href="#booking" class="header-booking"><span data-i18n="nav-book">Book Now</span><span aria-hidden="true">→</span></a>
+    <button id="menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="main-nav">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -158,55 +164,46 @@
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="container hero-content">
-    <div class="hero-badge">
-      <i class="fas fa-star"></i>
-      <span data-i18n="hero-badge">Pleasant Journey, Excellent Service</span>
-    </div>
-    <h1 data-i18n="hero-h1">Kailashpati Tour &amp; Travels</h1>
-    <p class="hero-sub" data-i18n="hero-sub">Comfortable Journey, Memorable Experience</p>
-    <p class="hero-tagline" data-i18n="hero-tagline">Kanyakumari to Kashmir – Travel safely with us</p>
+    <h1><span data-i18n="hero-title-line1">Kailashpati</span><span data-i18n="hero-title-line2">Tour &amp; Travels</span></h1>
+    <p class="hero-sub" data-i18n="hero-sub">Your Trusted Travel Partner in Deoghar</p>
+    <ul class="hero-services" aria-label="Travel services">
+      <li><i class="fas fa-car" aria-hidden="true"></i><span data-i18n="hero-service-taxi">Taxi Service</span></li>
+      <li><i class="fas fa-place-of-worship" aria-hidden="true"></i><span data-i18n="hero-service-pilgrimage">Pilgrimage Tours</span></li>
+      <li><i class="fas fa-users" aria-hidden="true"></i><span data-i18n="hero-service-group">Group Travel</span></li>
+      <li><i class="fas fa-location-dot" aria-hidden="true"></i><span data-i18n="hero-service-trips">Local &amp; Outstation Trips</span></li>
+    </ul>
+    <p class="hero-tagline" data-i18n="hero-tagline">Comfortable journeys and reliable service across Deoghar and nearby destinations.</p>
     <div class="hero-btns">
-      <a href="tel:+919135839746" class="btn btn-primary">
-        <i class="fas fa-phone-alt"></i>
-        <span data-i18n="hero-btn-call">Call to Book</span>
+      <a href="#booking" class="btn btn-primary">
+        <span data-i18n="hero-btn-book">Plan Your Journey</span><i class="fas fa-arrow-right" aria-hidden="true"></i>
       </a>
-      <a href="https://wa.me/919973513731?text=Hello%2C%20I%20want%20to%20book%20a%20cab" class="btn btn-whatsapp" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-        <span data-i18n="hero-btn-wa">WhatsApp</span>
-      </a>
-    </div>
-    <div class="hero-stats">
-      <div class="stat"><span class="stat-num">500+</span><span class="stat-lbl" data-i18n="stat-customers">Happy Customers</span></div>
-      <div class="stat"><span class="stat-num">10+</span><span class="stat-lbl" data-i18n="stat-experience">Years Experience</span></div>
-      <div class="stat"><span class="stat-num">24/7</span><span class="stat-lbl" data-i18n="stat-available">Available</span></div>
-      <div class="stat"><span class="stat-num">50+</span><span class="stat-lbl" data-i18n="stat-destinations">Destinations</span></div>
+      <a href="tel:+919135839746" class="btn btn-hero-call"><i class="fas fa-phone-alt" aria-hidden="true"></i><span data-i18n="hero-btn-call">Call to Book</span></a>
     </div>
   </div>
-  <div class="hero-scroll"><i class="fas fa-chevron-down"></i></div>
 </section>
 
 <!-- ===== BOOKING STRIP ===== -->
-<section class="booking-strip">
+<section id="booking" class="booking-strip" aria-label="Plan your journey">
   <div class="container">
     <form id="booking-form" class="booking-form" data-whatsapp-recipient="919973513731">
       <div class="form-group">
         <label for="from">
           <i class="fas fa-map-marker-alt"></i>
-          <span data-i18n="label-from">From</span>
+          <span data-i18n="label-from">Pickup Location</span>
         </label>
-        <input type="text" id="from" data-i18n-placeholder="ph-from" placeholder="Deoghar" required />
+        <input type="text" id="from" data-i18n-placeholder="ph-from" value="Deoghar" autocomplete="street-address" required />
       </div>
       <div class="form-group">
         <label for="to">
           <i class="fas fa-location-dot"></i>
-          <span data-i18n="label-to">To</span>
+          <span data-i18n="label-to">Destination</span>
         </label>
-        <input type="text" id="to" data-i18n-placeholder="ph-to" placeholder="Destination" required />
+        <input type="text" id="to" data-i18n-placeholder="ph-to" placeholder="Select destination" required />
       </div>
       <div class="form-group">
         <label for="date">
           <i class="fas fa-calendar-alt"></i>
-          <span data-i18n="label-date">Date</span>
+          <span data-i18n="label-date">Travel Date</span>
         </label>
         <input type="date" id="date" required />
       </div>
@@ -215,11 +212,10 @@
           <i class="fas fa-car"></i>
           <span data-i18n="label-vehicle">Vehicle</span>
         </label>
-        <select id="vehicle-type">
+        <select id="vehicle-type" required>
           <option value="" data-i18n="opt-select">Select Vehicle</option>
-          <option value="sedan" data-i18n="opt-sedan">4-Wheeler (Sedan)</option>
-          <option value="urbania" data-i18n="opt-urbania">Urbania 17-Seater</option>
-          <option value="tempo" data-i18n="opt-tempo">Tempo Traveller</option>
+          <option value="sedan" data-i18n="opt-sedan">Sedan</option>
+          <option value="urbania" data-i18n="opt-urbania">Force Urbania</option>
         </select>
       </div>
       <!-- Honeypot: hidden field — bots fill this, humans don't. If filled = spam -->
@@ -233,41 +229,34 @@
 </section>
 
 <!-- ===== FEATURES BAR ===== -->
-<section class="features-bar">
+<section class="features-bar" aria-label="Why travel with us">
   <div class="container features-grid">
     <div class="feature-item">
-      <div class="feature-icon"><i class="fas fa-snowflake"></i></div>
+      <div class="feature-icon"><i class="fas fa-shield-halved" aria-hidden="true"></i></div>
       <div class="feature-text">
-        <strong data-i18n="feat1-title">Full AC</strong>
-        <span data-i18n="feat1-sub">All vehicles fully air-conditioned</span>
+        <strong data-i18n="benefit-safe-title">Safe &amp; Reliable</strong>
+        <span data-i18n="benefit-safe-copy">Your safety is our priority</span>
       </div>
     </div>
     <div class="feature-item">
-      <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+      <div class="feature-icon"><i class="fas fa-users" aria-hidden="true"></i></div>
       <div class="feature-text">
-        <strong data-i18n="feat2-title">Safe &amp; Reliable</strong>
-        <span data-i18n="feat2-sub">Trusted, verified drivers</span>
+        <strong data-i18n="benefit-driver-title">Experienced Drivers</strong>
+        <span data-i18n="benefit-driver-copy">Professional and courteous</span>
       </div>
     </div>
     <div class="feature-item">
-      <div class="feature-icon"><i class="fas fa-clock"></i></div>
+      <div class="feature-icon"><i class="fas fa-indian-rupee-sign" aria-hidden="true"></i></div>
       <div class="feature-text">
-        <strong data-i18n="feat3-title">On-Time Service</strong>
-        <span data-i18n="feat3-sub">Always punctual</span>
+        <strong data-i18n="benefit-price-title">Transparent Pricing</strong>
+        <span data-i18n="benefit-price-copy">No hidden charges</span>
       </div>
     </div>
     <div class="feature-item">
-      <div class="feature-icon"><i class="fas fa-headset"></i></div>
+      <div class="feature-icon"><i class="fas fa-headset" aria-hidden="true"></i></div>
       <div class="feature-text">
-        <strong data-i18n="feat4-title">24x7 Support</strong>
-        <span data-i18n="feat4-sub">Round-the-clock assistance</span>
-      </div>
-    </div>
-    <div class="feature-item">
-      <div class="feature-icon"><i class="fas fa-gift"></i></div>
-      <div class="feature-text">
-        <strong data-i18n="feat5-title">Booking Gift</strong>
-        <span data-i18n="feat5-sub">Free gift on every booking!</span>
+        <strong data-i18n="benefit-support-title">24/7 Support</strong>
+        <span data-i18n="benefit-support-copy">Always here to help</span>
       </div>
     </div>
   </div>
@@ -277,59 +266,39 @@
 <section id="vehicles" class="section vehicles-section">
   <div class="container">
     <div class="section-header">
-      <span class="section-tag" data-i18n="vehicles-tag">Our Fleet</span>
-      <h2 data-i18n="vehicles-h2">Our Premium Vehicles</h2>
-      <p data-i18n="vehicles-p">Choose the perfect vehicle for your journey — comfort and safety guaranteed</p>
+      <span class="section-tag" data-i18n="vehicles-tag">Our Vehicles</span>
+      <h2 data-i18n="vehicles-h2">Choose Your Ride</h2>
+      <p data-i18n="vehicles-p">Comfortable and reliable vehicles for your journey</p>
     </div>
     <div class="vehicles-grid">
-      <!-- Urbania Card -->
-      <div class="vehicle-card featured">
-        <div class="vehicle-badge" data-i18n="urbania-badge">Most Popular</div>
+      <article class="vehicle-card" data-vehicle-card="sedan">
         <div class="vehicle-img-wrap">
-          <img src="images/hero_van.jpg" alt="Force Urbania 17 Seater Tempo Traveller" loading="lazy" />
+          <img src="images/sedan_car.jpg" alt="White sedan available for local and outstation travel in Deoghar" loading="lazy" width="1360" height="768" />
         </div>
         <div class="vehicle-info">
-          <h3 data-i18n="urbania-h3">Force Urbania 440</h3>
-          <div class="vehicle-tag" data-i18n="urbania-tag">17-Seater Luxury Tempo Traveller</div>
-          <ul class="vehicle-features">
-            <li><i class="fas fa-check"></i><span data-i18n-html="urbania-f1"><strong>Full AC</strong> — Fully air-conditioned</span></li>
-            <li><i class="fas fa-check"></i><span data-i18n-html="urbania-f2"><strong>17 Comfortable Seats</strong> — Spacious seating</span></li>
-            <li><i class="fas fa-check"></i><span data-i18n-html="urbania-f3"><strong>Safe &amp; Reliable</strong> — Trusted &amp; secure</span></li>
-            <li><i class="fas fa-check"></i><span data-i18n-html="urbania-f4"><strong>On-Time Service</strong> — Always punctual</span></li>
-            <li><i class="fas fa-check"></i><span data-i18n="urbania-f5">Local &amp; Outstation | Family &amp; Group Tours</span></li>
-            <li><i class="fas fa-check"></i><span data-i18n="urbania-f6">Airport &amp; Railway Pickup-Drop | 24×7 Booking</span></li>
-            <li><i class="fas fa-gift" style="color:#f9c74f"></i><span data-i18n-html="urbania-gift"><strong style="color:#e85d04">Get a Guaranteed Gift on Booking 🎁</strong></span></li>
+          <h3 data-i18n="sedan-h3">Sedan</h3>
+          <p class="vehicle-description" data-i18n="sedan-description">Comfortable for small families and personal trips</p>
+          <ul class="vehicle-specs">
+            <li><i class="fas fa-user" aria-hidden="true"></i><span data-i18n="sedan-seats">4 seats</span></li>
+            <li><i class="fas fa-snowflake" aria-hidden="true"></i><span data-i18n="vehicle-ac">Air-conditioned</span></li>
           </ul>
-          <div class="vehicle-price" data-i18n-html="urbania-price">₹35–₹60 <strong>/km</strong></div>
-          <a href="tel:+919135839746" class="btn btn-primary full-w">
-            <i class="fas fa-phone-alt"></i>
-            <span data-i18n="urbania-btn">Book Urbania — 9135839746</span>
-          </a>
+          <button type="button" class="btn btn-primary vehicle-book" data-book-vehicle="sedan"><span data-i18n="sedan-book">Book Sedan</span><i class="fas fa-arrow-right" aria-hidden="true"></i></button>
         </div>
-      </div>
-      <!-- 4-Wheeler Card -->
-      <div class="vehicle-card">
+      </article>
+      <article class="vehicle-card" data-vehicle-card="urbania">
         <div class="vehicle-img-wrap">
-          <img src="images/sedan_car.jpg" alt="4-Wheeler Sedan Cab Deoghar" loading="lazy" />
+          <img src="images/hero_van.jpg" alt="Force passenger van on a scenic road" loading="lazy" width="1360" height="768" />
         </div>
         <div class="vehicle-info">
-          <h3 data-i18n="sedan-h3">4-Wheeler Sedan</h3>
-          <div class="vehicle-tag" data-i18n="sedan-tag">Wedding &amp; Local Visits | Comfortable Family Car</div>
-          <ul class="vehicle-features">
-            <li><i class="fas fa-check"></i><span data-i18n-html="sedan-f1"><strong>Full AC</strong> — Comfortable seating</span></li>
-            <li><i class="fas fa-check"></i><span data-i18n-html="sedan-f2"><strong>Wedding Functions</strong> — Marriage ceremonies</span></li>
-            <li><i class="fas fa-check"></i><span data-i18n-html="sedan-f3"><strong>Local Visit</strong> — Deoghar &amp; nearby sightseeing</span></li>
-            <li><i class="fas fa-check"></i><span data-i18n="sedan-f4">Airport &amp; Railway Station pickup-drop</span></li>
-            <li><i class="fas fa-check"></i><span data-i18n="sedan-f5">Outstation trips — Economical &amp; reliable</span></li>
-            <li><i class="fas fa-gift" style="color:#f9c74f"></i><span data-i18n-html="sedan-gift"><strong style="color:#e85d04">Free gift on every booking 🎁</strong></span></li>
+          <h3 data-i18n="urbania-h3">Force Urbania</h3>
+          <p class="vehicle-description" data-i18n="urbania-description">Spacious and comfortable for group travel</p>
+          <ul class="vehicle-specs">
+            <li><i class="fas fa-users" aria-hidden="true"></i><span data-i18n="urbania-seats">17 seats</span></li>
+            <li><i class="fas fa-snowflake" aria-hidden="true"></i><span data-i18n="vehicle-ac">Air-conditioned</span></li>
           </ul>
-          <div class="vehicle-price" data-i18n-html="sedan-price">₹35–₹45 <strong>/km</strong></div>
-          <a href="tel:+919135839746" class="btn btn-outline full-w">
-            <i class="fas fa-phone-alt"></i>
-            <span data-i18n="sedan-btn">Book 4-Wheeler — 9973513731</span>
-          </a>
+          <button type="button" class="btn btn-primary vehicle-book" data-book-vehicle="urbania"><span data-i18n="urbania-book">Book Force Urbania</span><i class="fas fa-arrow-right" aria-hidden="true"></i></button>
         </div>
-      </div>
+      </article>
     </div>
   </div>
 </section>
@@ -778,6 +747,6 @@
 </div>
 
 <script src="enquiry.js"></script>
-<script src="app.js?v=20261024-3" charset="utf-8"></script>
+<script src="app.js?v=20261030-4" charset="utf-8"></script>
 </body>
 </html>
