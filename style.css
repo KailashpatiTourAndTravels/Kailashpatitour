@@ -1433,6 +1433,9 @@ button { cursor: pointer; border: none; background: none; font-family: var(--fon
 .vehicle-specs { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 22px; margin: 14px 0 17px; }
 .vehicle-specs li { display: inline-flex; align-items: center; gap: 8px; color: #42536a; font-size: .82rem; font-weight: 600; }
 .vehicle-specs i { color: #142238; }
+.urbania-highlights { width: 100%; display: grid; gap: 8px; margin: 0 0 18px; padding: 13px 14px; list-style: none; border-radius: 10px; background: #f7f9fc; }
+.urbania-highlights li { display: grid; grid-template-columns: 18px minmax(0,1fr); align-items: start; gap: 8px; color: #42536a; font-size: .76rem; line-height: 1.5; }
+.urbania-highlights i { margin-top: 3px; color: var(--primary); }
 .vehicle-book { align-self: flex-end; justify-content: center; min-width: 176px; margin-top: auto; padding: 11px 18px; font-size: .82rem; box-shadow: none; }
 .vehicle-book:hover { box-shadow: 0 8px 20px rgba(255,107,0,.25); }
 
