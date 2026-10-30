@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Baidyanath Dham Taxi Booking | Deoghar | Kailashpati Tour & Travels</title>
-  <meta name="description" content="Book a taxi to Baba Baidyanath Dham Temple in Deoghar. Comfortable sedan and Urbania 17-seater for darshan trips, local sightseeing and return journeys. Call +91 9973513731." />
+  <meta name="description" content="Plan a Deoghar sightseeing taxi trip to nearby temples, hills, waterfalls and more. Choose multiple destinations and request a comfortable taxi quote from Kailashpati Tour & Travels." />
   <link rel="canonical" href="https://www.kaliashpatitourandtravels.com/baidyanath-dham-taxi" />
   <meta name="robots" content="index, follow" />
 
@@ -73,6 +73,75 @@
     .sp-price-table th,.sp-price-table td{padding:12px 16px;text-align:left;border-bottom:1px solid #e0e0e0}
     .sp-price-table th{background:#1a3a5c;color:#fff}
     .sp-price-table tr:hover{background:#f5f5f5}
+    .nearby-section{padding:70px 22px;background:linear-gradient(180deg,#fffaf4 0%,#fff 100%)}
+    .nearby-inner{width:min(1050px,100%);margin:0 auto}
+    .nearby-heading{max-width:780px;margin:0 auto 28px;text-align:center}
+    .nearby-eyebrow{margin:0 0 9px;color:var(--taxi-orange);font-size:.78rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase}
+    .nearby-heading h2,.trip-heading h2{margin:0 0 12px;color:var(--taxi-navy);font-size:clamp(1.8rem,3.5vw,2.45rem);line-height:1.2}
+    .nearby-heading p{margin:0;color:#5b6675;font-size:.98rem;line-height:1.75}
+    .nearby-photo-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin:0 auto 22px}
+    .nearby-photo{position:relative;min-width:0;height:auto;display:flex;flex-direction:column;overflow:hidden;border:1px solid #eee5dc;border-radius:12px;background:#fff}
+    .nearby-photo img{width:100%;height:118px;flex:none;display:block;object-fit:cover}
+    .nearby-photo figcaption{position:static;padding:7px 8px 2px;color:#263b50;font-size:.69rem;font-weight:600}
+    .nearby-photo-credit{position:static;align-self:flex-start;margin:0;padding:2px 8px 8px;color:#8a5a38;font-size:.57rem;line-height:1.35;text-decoration:underline;text-underline-offset:2px}
+    .nearby-list-box{overflow:hidden;border:1px solid #eadfd3;border-radius:15px;background:#fff;box-shadow:0 8px 26px rgba(6,27,46,.07)}
+    .nearby-list-summary{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:19px 22px;color:#243b52}
+    .nearby-list-summary strong{font-size:1rem}.nearby-list-summary span{color:#77818e;font-size:.84rem}
+    .nearby-expand-button{min-height:44px;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:10px 15px;border:0;border-radius:9px;background:#ff6b00;color:#fff;font:600 .83rem 'Poppins',sans-serif;cursor:pointer;transition:background .2s ease}
+    .nearby-expand-button:hover{background:#e85d00}.nearby-expand-button:focus-visible,.destination-toggle:focus-visible,.picker-toolbar button:focus-visible,.selected-tag button:focus-visible{outline:3px solid #132e48;outline-offset:3px}
+    .nearby-all-places{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 28px;padding:4px 22px 20px;border-top:1px solid #f0e9e2}
+    .nearby-region h3,.destination-region h4{margin:17px 0 7px;color:#b94b00;font-size:.85rem;font-weight:700}
+    .nearby-region ul{margin:0;padding:0;list-style:none}
+    .nearby-region li{position:relative;padding:6px 4px 6px 19px;color:#344458;font-size:.86rem;line-height:1.5}
+    .nearby-region li::before{content:"";position:absolute;top:14px;left:2px;width:6px;height:6px;border-radius:50%;background:#ff8a32}
+    .nearby-all-places[hidden],.destination-options[hidden]{display:none}
+    .trip-section{padding:72px 22px;background:#f2f6fa}
+    .trip-inner{width:min(940px,100%);margin:0 auto}
+    .trip-heading{margin:0 auto 28px;text-align:center}
+    .trip-heading p{margin:0;color:#5b6675;font-size:.94rem;line-height:1.7}
+    .trip-form{padding:clamp(20px,4vw,36px);border:1px solid #e3e9ef;border-radius:18px;background:#fff;box-shadow:0 12px 32px rgba(6,27,46,.08)}
+    .trip-form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 20px}
+    .trip-field{min-width:0;display:flex;flex-direction:column;gap:7px}
+    .trip-field-wide{grid-column:1/-1}
+    .trip-field label,.trip-field-label{color:#263c52;font-size:.84rem;font-weight:600}
+    .trip-field input,.trip-field select,.trip-field textarea,.destination-toggle,.destination-search{width:100%;min-height:48px;padding:11px 13px;border:1px solid #d8e0e8;border-radius:9px;background:#fff;color:#172b40;font:400 .88rem 'Poppins',sans-serif}
+    .trip-field textarea{min-height:105px;resize:vertical}
+    .trip-field input:focus,.trip-field select:focus,.trip-field textarea:focus,.destination-search:focus{border-color:#ef7924;outline:3px solid rgba(255,107,0,.13)}
+    .trip-field input::placeholder,.trip-field textarea::placeholder{color:#929ca8}
+    .mobile-input-wrap{display:flex;align-items:center;min-height:48px;border:1px solid #d8e0e8;border-radius:9px;background:#fff;overflow:hidden}
+    .mobile-input-wrap:focus-within{border-color:#ef7924;outline:3px solid rgba(255,107,0,.13)}
+    .mobile-country-code{align-self:stretch;display:flex;align-items:center;padding:0 13px;border-right:1px solid #e3e8ed;background:#f7f9fb;color:#263c52;font-size:.88rem;font-weight:600}
+    .mobile-input-wrap input#customer-mobile{min-width:0;min-height:46px;flex:1;border:0;border-radius:0;outline:0;padding:11px 13px}
+    .destination-picker{position:relative}
+    .destination-toggle{display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left;cursor:pointer}
+    .destination-toggle .picker-summary{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#687688}
+    .destination-toggle .picker-count{flex:none;padding:3px 8px;border-radius:999px;background:#fff1e5;color:#bc4e00;font-size:.73rem;font-weight:700}
+    .destination-options{position:absolute;z-index:5;top:calc(100% + 7px);left:0;width:100%;max-height:390px;padding:13px;overflow:auto;border:1px solid #dce3e9;border-radius:12px;background:#fff;box-shadow:0 18px 40px rgba(6,27,46,.18)}
+    .picker-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin:0 0 9px}
+    .destination-search{min-width:160px;min-height:42px;flex:1;padding:9px 11px}
+    .picker-toolbar button{min-height:38px;padding:8px 11px;border:1px solid #e3e7eb;border-radius:8px;background:#fff;color:#34485e;font:600 .74rem 'Poppins',sans-serif;cursor:pointer}
+    .picker-toolbar button:hover{border-color:#ffb274;background:#fff8f1}
+    .destination-region{padding:0 0 5px;border-bottom:1px solid #f0f2f4}
+    .destination-region:last-child{border-bottom:0}
+    .destination-region h4{margin-top:12px}
+    .destination-choice{display:flex;align-items:center;gap:10px;padding:6px 5px;border-radius:6px;color:#394b5e;font-size:.82rem;cursor:pointer}
+    .destination-choice:hover{background:#fff7ef}
+    .destination-choice input{width:17px;height:17px;accent-color:#ff6b00}
+    .destination-empty{padding:12px 5px;color:#737e89;font-size:.82rem}
+    .selected-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+    .selected-tags:empty{display:none}
+    .selected-tag{display:inline-flex;align-items:center;gap:7px;padding:5px 8px 5px 10px;border:1px solid #f1d0b5;border-radius:999px;background:#fff8f2;color:#713d1d;font-size:.72rem}
+    .selected-tag button{display:grid;width:20px;height:20px;place-items:center;border:0;border-radius:50%;background:#fbe6d5;color:#813f13;font-size:.9rem;cursor:pointer}
+    .field-error{min-height:1em;margin:0;color:#b42318;font-size:.74rem}
+    .form-note{margin:14px 0 0;color:#667487;font-size:.78rem;line-height:1.65}
+    .trip-submit{width:100%;min-height:52px;display:inline-flex;align-items:center;justify-content:center;gap:10px;margin-top:21px;padding:12px 18px;border:0;border-radius:10px;background:#ff6b00;color:#fff;font:700 .95rem 'Poppins',sans-serif;cursor:pointer;transition:background .2s ease,transform .2s ease}
+    .trip-submit:hover{background:#e85d00;transform:translateY(-1px)}
+    .trip-submit:focus-visible{outline:3px solid #132e48;outline-offset:3px}
+    .trip-status{min-height:1.5em;margin:12px 0 0;color:#285d3b;text-align:center;font-size:.82rem}
+    @media(max-width:760px){.nearby-section,.trip-section{padding:54px 17px}.nearby-photo-strip{gap:8px}.nearby-photo img{height:90px}.nearby-photo-credit{font-size:.52rem}.nearby-photo figcaption{font-size:.61rem}.nearby-all-places{grid-template-columns:1fr;padding-inline:17px}.nearby-list-summary{align-items:flex-start;flex-direction:column;padding:17px}.nearby-expand-button{width:100%}.trip-form-grid{grid-template-columns:1fr;gap:15px}.trip-field-wide{grid-column:auto}.destination-options{position:fixed;top:auto;right:12px;bottom:12px;left:12px;width:auto;max-height:min(74svh,620px);padding:14px}.picker-toolbar button{flex:1}}
+    @media(max-width:760px){.taxi-services li{min-width:0}.taxi-service-text{min-width:0;white-space:normal}.taxi-service-text small{white-space:normal;line-height:1.25}.sp-price-table{width:100%;table-layout:fixed;font-size:.78rem}.sp-price-table th,.sp-price-table td{padding:8px 7px;overflow-wrap:anywhere}}
+    @media(max-width:380px){.nearby-section,.trip-section{padding-inline:13px}.nearby-photo{height:76px}.nearby-photo-credit{font-size:.48rem}.trip-form{padding:18px 14px}.destination-options{right:8px;bottom:8px;left:8px}}
+    @media(prefers-reduced-motion:reduce){.nearby-expand-button,.trip-submit{transition:none}}
     @media(max-width:1100px){.taxi-header{padding-inline:36px}.taxi-hero{padding-inline:48px}.taxi-hero h1{font-size:clamp(3.6rem,6.5vw,4.7rem)}.taxi-services li{padding-inline:9px;gap:8px}.taxi-service-icon{width:38px;height:38px;flex-basis:38px}}
     @media(max-width:760px){.taxi-header{height:74px;padding-inline:18px}.taxi-header-logo img{width:165px;max-height:62px}.taxi-home-link{font-size:20px;padding:10px 0 12px}.taxi-hero{height:auto;min-height:610px;padding:58px 22px 48px;align-items:flex-start}.taxi-hero-image{object-position:59% center}.taxi-hero-overlay{background:linear-gradient(90deg,rgba(3,20,38,.91),rgba(3,20,38,.69) 65%,rgba(3,20,38,.38)),linear-gradient(0deg,rgba(3,20,38,.68),transparent 75%)}.taxi-hero-content{width:100%}.taxi-hero h1{font-size:clamp(3.2rem,11vw,4.5rem);letter-spacing:-1px;margin-bottom:17px}.taxi-hero h1::after{margin-top:15px}.taxi-hero-copy{font-size:1.08rem;line-height:1.48;margin-bottom:22px}.taxi-services{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 9px;margin-bottom:23px}.taxi-services li,.taxi-services li:first-child{padding:0;border:0;gap:8px}.taxi-service-icon{width:38px;height:38px;flex-basis:38px;font-size:1rem}.taxi-service-text strong{font-size:.78rem}.taxi-service-text small{font-size:.65rem}.taxi-book-button{width:min(100%,420px);min-width:0;min-height:62px;padding-inline:18px;font-size:1.05rem}}
     @media(max-width:380px){.taxi-header{padding-inline:12px}.taxi-header-logo img{width:145px}.taxi-home-link{font-size:18px}.taxi-hero{padding-inline:17px;min-height:610px}.taxi-hero h1{font-size:clamp(2.8rem,11vw,3.3rem)}}
@@ -128,7 +197,65 @@
       <li><span class="taxi-service-icon" aria-hidden="true"><i class="fas fa-users"></i></span><span class="taxi-service-text"><strong>Group Travel</strong><small>For Family & Friends</small></span></li>
       <li><span class="taxi-service-icon" aria-hidden="true"><i class="fas fa-location-dot"></i></span><span class="taxi-service-text"><strong>Outstation Trips</strong><small>Across Jharkhand & Beyond</small></span></li>
     </ul>
-    <a class="taxi-book-button" href="/#booking-form"><i class="fas fa-car-side" aria-hidden="true"></i><span>Book Your Taxi Now</span><i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+    <a class="taxi-book-button" href="#trip-booking-form"><i class="fas fa-car-side" aria-hidden="true"></i><span>Book Your Taxi Now</span><i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+  </div>
+</section>
+
+<section class="nearby-section" aria-labelledby="nearby-heading">
+  <div class="nearby-inner">
+    <header class="nearby-heading">
+      <p class="nearby-eyebrow">Taxi sightseeing around Deoghar</p>
+      <h2 id="nearby-heading">Explore Nearby Places from Deoghar</h2>
+      <p>Discover temples, hills, waterfalls and beautiful destinations near Deoghar.</p>
+    </header>
+    <div class="nearby-photo-strip" aria-label="Destination photographs">
+      <figure class="nearby-photo"><img src="/images/baidyanath-temple-card.webp" alt="Baba Baidyanath Dham Temple complex in Deoghar" loading="lazy" decoding="async"><figcaption>Baba Baidyanath Dham</figcaption><a class="nearby-photo-credit" href="https://commons.wikimedia.org/wiki/File:Baidyanath_temple_and_temple_complex,_Deoghar_22.jpg" target="_blank" rel="noopener noreferrer">Photo: Pinakpani · CC BY 4.0</a></figure>
+      <figure class="nearby-photo"><img src="/images/basukinath-temple.webp" alt="Basukinath Temple in Dumka district" loading="lazy" decoding="async"><figcaption>Basukinath Temple</figcaption><a class="nearby-photo-credit" href="https://commons.wikimedia.org/wiki/File:Basukinath_Temple.jpg" target="_blank" rel="noopener noreferrer">Photo: Bhanunarayan20 · CC BY 4.0</a></figure>
+      <figure class="nearby-photo"><img src="/images/trikut-pahar.webp" alt="Landscape at Trikut Pahar near Deoghar" loading="lazy" decoding="async"><figcaption>Trikut Pahar</figcaption><a class="nearby-photo-credit" href="https://commons.wikimedia.org/wiki/File:Trikut_pahar.jpg" target="_blank" rel="noopener noreferrer">Photo: Tarunsamanta · CC BY-SA 4.0</a></figure>
+    </div>
+    <div class="nearby-list-box">
+      <div class="nearby-list-summary"><div><strong>Nearby destinations</strong><br><span>18 places grouped by region · Road distances are omitted until verified</span></div><button class="nearby-expand-button" type="button" id="nearby-expand" aria-expanded="false" aria-controls="nearby-all-places">View All Nearby Places <i class="fas fa-chevron-down" aria-hidden="true"></i></button></div>
+      <div class="nearby-all-places" id="nearby-all-places" hidden>
+        <section class="nearby-region" data-place-region="Deoghar Local"><h3>Deoghar Local</h3><ul>
+          <li data-nearby-place="Baba Baidyanath Dham Temple">Baba Baidyanath Dham Temple</li><li data-nearby-place="Basukinath Temple">Basukinath Temple</li><li data-nearby-place="Trikut Pahar">Trikut Pahar</li><li data-nearby-place="Tapovan Pahar &amp; Gufa">Tapovan Pahar &amp; Gufa</li><li data-nearby-place="Naulakha Temple">Naulakha Temple</li><li data-nearby-place="Prem Mandir, Deoghar">Prem Mandir, Deoghar</li><li data-nearby-place="Satsang Ashram">Satsang Ashram</li><li data-nearby-place="Nandan Pahar">Nandan Pahar</li><li data-nearby-place="Rikhiapeeth Ashram">Rikhiapeeth Ashram</li>
+        </ul></section>
+        <section class="nearby-region" data-place-region="Giridih"><h3>Giridih</h3><ul><li data-nearby-place="Parasnath Mandir (Shikharji)">Parasnath Mandir (Shikharji)</li><li data-nearby-place="Khandoli Dam &amp; Park">Khandoli Dam &amp; Park</li><li data-nearby-place="Usri Falls">Usri Falls</li></ul></section>
+        <section class="nearby-region" data-place-region="Banka"><h3>Banka</h3><ul><li data-nearby-place="Mandar Hill">Mandar Hill</li><li data-nearby-place="Bounsi">Bounsi</li></ul></section>
+        <section class="nearby-region" data-place-region="Dumka &amp; West Bengal"><h3>Dumka &amp; West Bengal</h3><ul><li data-nearby-place="Massanjore Dam">Massanjore Dam</li><li data-nearby-place="Tarapith Temple">Tarapith Temple</li><li data-nearby-place="Rampurhat">Rampurhat</li></ul></section>
+        <section class="nearby-region" data-place-region="Dhanbad"><h3>Dhanbad</h3><ul><li data-nearby-place="Maithon Dam">Maithon Dam</li></ul></section>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="trip-section" id="trip-booking-form" aria-labelledby="trip-heading">
+  <div class="trip-inner">
+    <header class="trip-heading"><p class="nearby-eyebrow">Your journey, your itinerary</p><h2 id="trip-heading">Plan Your Deoghar Trip</h2><p>Choose one or more places and send us your travel details for a taxi availability and fare enquiry.</p></header>
+    <form class="trip-form" id="trip-enquiry-form" novalidate>
+      <div class="trip-form-grid">
+        <div class="trip-field trip-field-wide">
+          <span class="trip-field-label" id="destinations-label">Select destinations <span aria-hidden="true">*</span></span>
+          <div class="destination-picker" id="destination-picker">
+            <button class="destination-toggle" type="button" id="destination-toggle" aria-expanded="false" aria-controls="destination-options" aria-labelledby="destinations-label destination-toggle-summary destination-toggle-count"><span class="picker-summary" id="destination-toggle-summary">Choose one or more destinations</span><span class="picker-count" id="destination-toggle-count">0 selected</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button>
+            <div class="destination-options" id="destination-options" hidden>
+              <div class="picker-toolbar"><input class="destination-search" id="destination-search" type="search" placeholder="Search destinations" aria-label="Search destinations" autocomplete="off"><button type="button" id="select-all-destinations">Select All</button><button type="button" id="clear-all-destinations">Clear All</button></div>
+              <div id="destination-options-groups"></div><p class="destination-empty" id="destination-empty" hidden>No destinations match your search.</p>
+            </div>
+          </div>
+          <div class="selected-tags" id="selected-destination-tags" aria-label="Selected destinations"></div>
+          <p class="field-error" id="destination-error" aria-live="polite"></p>
+        </div>
+        <div class="trip-field"><label for="travel-date">Travel date <span aria-hidden="true">*</span></label><input type="date" id="travel-date" name="travelDate" required></div>
+        <div class="trip-field"><label for="pickup-location">Pickup location <span aria-hidden="true">*</span></label><input type="text" id="pickup-location" name="pickupLocation" placeholder="Enter your pickup point" maxlength="120" autocomplete="street-address" required></div>
+        <div class="trip-field"><label for="preferred-car">Preferred car <span aria-hidden="true">*</span></label><select id="preferred-car" name="preferredCar" required><option value="">Choose a vehicle</option><option>Hatchback</option><option>Sedan</option><option>SUV</option><option>Innova / Ertiga</option><option>Tempo Traveller</option><option>Not Sure</option></select></div>
+        <div class="trip-field"><label for="customer-name">Customer name <span aria-hidden="true">*</span></label><input type="text" id="customer-name" name="customerName" placeholder="Your full name" minlength="2" maxlength="80" autocomplete="name" required></div>
+        <div class="trip-field"><label for="customer-mobile">Mobile number <span aria-hidden="true">*</span></label><div class="mobile-input-wrap"><span class="mobile-country-code" aria-hidden="true">+91</span><input type="tel" id="customer-mobile" name="customerMobile" placeholder="10-digit mobile number" inputmode="numeric" autocomplete="tel-national" pattern="[6-9][0-9]{9}" maxlength="10" minlength="10" required aria-describedby="mobile-help"></div><span class="field-error" id="mobile-help">Enter a valid 10-digit Indian mobile number after +91.</span></div>
+        <div class="trip-field trip-field-wide"><label for="additional-requirements">Additional requirements <span>(optional)</span></label><textarea id="additional-requirements" name="additionalRequirements" placeholder="Tell us about luggage, return trips, stops or other needs" maxlength="500"></textarea></div>
+      </div>
+      <p class="form-note">This form sends a booking enquiry only. No reservation is confirmed until our team checks availability and confirms the details with you.</p>
+      <button class="trip-submit" type="submit"><i class="fab fa-whatsapp" aria-hidden="true"></i> Continue on WhatsApp <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+      <p class="trip-status" id="trip-status" aria-live="polite"></p>
+    </form>
   </div>
 </section>
 
@@ -157,18 +284,9 @@
     </tbody>
   </table>
 
-  <h2>Places to Visit Near Baidyanath Dham</h2>
-  <ul>
-    <li>🕉️ <strong>Baba Baidyanath Dham Temple</strong> — The main Jyotirlinga shrine</li>
-    <li>🏛️ <strong>Naulakha Mandir</strong> — Beautiful Radha Krishna temple near the main temple</li>
-    <li>🙏 <strong>Satsang Ashram</strong> — Peaceful spiritual retreat centre</li>
-    <li>🌿 <strong>Tapovan Hills</strong> — Sacred caves and natural beauty</li>
-    <li>⛰️ <strong>Trikut Parvat</strong> — Scenic ropeway and hilltop temple</li>
-  </ul>
-
   <h2>Pricing</h2>
-  <p>Rates start from <strong>₹35/km</strong> for sedan. Contact us for a custom quote based on your itinerary and group size.</p>
-  <p><em>Toll, parking and fuel charges are extra. Driver night allowance of ₹800 applies for trips beyond 8 PM.</em></p>
+  <p>Sedan rates are approximately <strong>₹40–₹60/km</strong>. Contact us for a custom quote based on your itinerary and group size.</p>
+  <p><em>Toll, parking and fuel charges are extra. Driver night allowance of ₹800–₹1,000 applies for trips beyond 8 PM.</em></p>
 
   <h2>How to Book</h2>
   <p>Book your Baidyanath Dham taxi easily:</p>
@@ -200,6 +318,207 @@
     <a href="https://wa.me/919973513731" target="_blank"><i class="fab fa-whatsapp"></i></a>
   </p>
 </footer>
+
+<script>
+  (() => {
+    const nearbyList = document.getElementById('nearby-all-places');
+    const nearbyButton = document.getElementById('nearby-expand');
+    const picker = document.getElementById('destination-picker');
+    const pickerButton = document.getElementById('destination-toggle');
+    const optionsPanel = document.getElementById('destination-options');
+    const optionsGroups = document.getElementById('destination-options-groups');
+    const searchInput = document.getElementById('destination-search');
+    const emptySearch = document.getElementById('destination-empty');
+    const selectedTags = document.getElementById('selected-destination-tags');
+    const selectedCount = document.getElementById('destination-toggle-count');
+    const selectedSummary = document.getElementById('destination-toggle-summary');
+    const destinationError = document.getElementById('destination-error');
+    const tripForm = document.getElementById('trip-enquiry-form');
+    const mobileInput = document.getElementById('customer-mobile');
+    const nameInput = document.getElementById('customer-name');
+    const pickupInput = document.getElementById('pickup-location');
+    const tripStatus = document.getElementById('trip-status');
+    const selectedDestinations = new Set();
+    const destinations = Array.from(document.querySelectorAll('[data-nearby-place]')).map((item, index) => ({
+      name: item.dataset.nearbyPlace,
+      region: item.closest('[data-place-region]').dataset.placeRegion,
+      id: `trip-destination-${index}`
+    }));
+
+    nearbyButton.addEventListener('click', () => {
+      const expanded = nearbyButton.getAttribute('aria-expanded') === 'true';
+      nearbyButton.setAttribute('aria-expanded', String(!expanded));
+      nearbyList.hidden = expanded;
+      nearbyButton.innerHTML = expanded
+        ? 'View All Nearby Places <i class="fas fa-chevron-down" aria-hidden="true"></i>'
+        : 'Show Fewer Nearby Places <i class="fas fa-chevron-up" aria-hidden="true"></i>';
+    });
+
+    const regions = new Map();
+    destinations.forEach((destination) => {
+      if (!regions.has(destination.region)) {
+        const region = document.createElement('section');
+        region.className = 'destination-region';
+        const heading = document.createElement('h4');
+        heading.textContent = destination.region;
+        region.append(heading);
+        regions.set(destination.region, region);
+        optionsGroups.append(region);
+      }
+      const label = document.createElement('label');
+      label.className = 'destination-choice';
+      label.dataset.destinationName = destination.name.toLocaleLowerCase();
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.name = 'destinations';
+      checkbox.value = destination.name;
+      checkbox.id = destination.id;
+      const name = document.createElement('span');
+      name.textContent = destination.name;
+      label.append(checkbox, name);
+      regions.get(destination.region).append(label);
+    });
+
+    const closePicker = ({ returnFocus = false } = {}) => {
+      optionsPanel.hidden = true;
+      pickerButton.setAttribute('aria-expanded', 'false');
+      if (returnFocus) pickerButton.focus();
+    };
+    const openPicker = () => {
+      optionsPanel.hidden = false;
+      pickerButton.setAttribute('aria-expanded', 'true');
+      window.requestAnimationFrame(() => searchInput.focus());
+    };
+    const renderSelected = () => {
+      selectedTags.replaceChildren();
+      selectedDestinations.forEach((destination) => {
+        const tag = document.createElement('span');
+        tag.className = 'selected-tag';
+        const text = document.createElement('span');
+        text.textContent = destination;
+        const remove = document.createElement('button');
+        remove.type = 'button';
+        remove.textContent = '×';
+        remove.setAttribute('aria-label', `Remove ${destination}`);
+        remove.addEventListener('click', () => {
+          selectedDestinations.delete(destination);
+          const checkbox = Array.from(optionsGroups.querySelectorAll('input[type="checkbox"]')).find((item) => item.value === destination);
+          if (checkbox) checkbox.checked = false;
+          renderSelected();
+        });
+        tag.append(text, remove);
+        selectedTags.append(tag);
+      });
+      const count = selectedDestinations.size;
+      selectedCount.textContent = `${count} selected`;
+      selectedSummary.textContent = count ? `${count} destination${count === 1 ? '' : 's'} selected` : 'Choose one or more destinations';
+      if (count) destinationError.textContent = '';
+    };
+
+    pickerButton.addEventListener('click', () => {
+      if (optionsPanel.hidden) openPicker();
+      else closePicker();
+    });
+    optionsGroups.addEventListener('change', (event) => {
+      const checkbox = event.target.closest('input[type="checkbox"]');
+      if (!checkbox) return;
+      if (checkbox.checked) selectedDestinations.add(checkbox.value);
+      else selectedDestinations.delete(checkbox.value);
+      renderSelected();
+    });
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.trim().toLocaleLowerCase();
+      let matches = 0;
+      optionsGroups.querySelectorAll('.destination-choice').forEach((label) => {
+        const visible = label.dataset.destinationName.includes(query);
+        label.hidden = !visible;
+        if (visible) matches += 1;
+      });
+      optionsGroups.querySelectorAll('.destination-region').forEach((region) => {
+        region.hidden = !Array.from(region.querySelectorAll('.destination-choice')).some((label) => !label.hidden);
+      });
+      emptySearch.hidden = matches > 0;
+    });
+    document.getElementById('select-all-destinations').addEventListener('click', () => {
+      destinations.forEach((destination) => selectedDestinations.add(destination.name));
+      optionsGroups.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => { checkbox.checked = true; });
+      renderSelected();
+    });
+    document.getElementById('clear-all-destinations').addEventListener('click', () => {
+      selectedDestinations.clear();
+      optionsGroups.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => { checkbox.checked = false; });
+      renderSelected();
+    });
+    document.addEventListener('click', (event) => {
+      if (!picker.contains(event.target) && !optionsPanel.hidden) closePicker();
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !optionsPanel.hidden) {
+        closePicker({ returnFocus: true });
+      }
+    });
+
+    const today = new Date();
+    const localToday = [today.getFullYear(), String(today.getMonth() + 1).padStart(2, '0'), String(today.getDate()).padStart(2, '0')].join('-');
+    const travelDateInput = document.getElementById('travel-date');
+    travelDateInput.min = localToday;
+    const validIndianMobile = (value) => /^[6-9]\d{9}$/.test(value.trim());
+    const validateMobile = () => {
+      mobileInput.setCustomValidity(validIndianMobile(mobileInput.value) ? '' : 'Enter a valid 10-digit Indian mobile number after +91.');
+    };
+    const validateTextField = (input, label, minimumLength = 1) => {
+      const value = input.value.trim();
+      input.setCustomValidity(!value ? `Enter your ${label}.` : value.length < minimumLength ? `${label} must contain at least ${minimumLength} characters.` : '');
+    };
+    mobileInput.addEventListener('input', validateMobile);
+    mobileInput.addEventListener('blur', validateMobile);
+    nameInput.addEventListener('input', () => validateTextField(nameInput, 'name', 2));
+    nameInput.addEventListener('blur', () => validateTextField(nameInput, 'name', 2));
+    pickupInput.addEventListener('input', () => validateTextField(pickupInput, 'pickup location'));
+    pickupInput.addEventListener('blur', () => validateTextField(pickupInput, 'pickup location'));
+
+    tripForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      tripStatus.textContent = '';
+      if (!selectedDestinations.size) {
+        destinationError.textContent = 'Select at least one destination to continue.';
+        openPicker();
+        return;
+      }
+      validateMobile();
+      validateTextField(nameInput, 'name', 2);
+      validateTextField(pickupInput, 'pickup location');
+      if (!tripForm.checkValidity()) {
+        tripForm.reportValidity();
+        return;
+      }
+      const formData = new FormData(tripForm);
+      const dateValue = formData.get('travelDate');
+      const readableDate = new Intl.DateTimeFormat('en-IN', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${dateValue}T00:00:00Z`));
+      const requirements = String(formData.get('additionalRequirements') || '').trim();
+      const message = [
+        'Namaste Kailashpati Tour & Travels,',
+        '',
+        'I would like to enquire about a taxi for my trip.',
+        '',
+        `Customer name: ${String(formData.get('customerName')).trim()}`,
+        `Mobile number: +91${String(formData.get('customerMobile')).trim()}`,
+        `Travel date: ${readableDate}`,
+        `Pickup location: ${String(formData.get('pickupLocation')).trim()}`,
+        `Preferred car: ${formData.get('preferredCar')}`,
+        'Destinations:',
+        ...Array.from(selectedDestinations, (destination) => `- ${destination}`),
+        `Additional requirements: ${requirements || 'None'}`,
+        '',
+        'Please share availability and the estimated fare.',
+        'This is a booking enquiry only, not a confirmed reservation.'
+      ].join('\n');
+      const whatsappUrl = `https://wa.me/919973513731?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+      tripStatus.textContent = 'WhatsApp opened with your enquiry. Review the details there and press Send to contact us.';
+    });
+  })();
+</script>
 
 </body>
 </html>
