@@ -9,6 +9,9 @@
   const destination = document.getElementById('review-destination');
   const customWrap = document.getElementById('review-custom-wrap');
   const customInput = document.getElementById('review-custom-destination');
+  const customError = document.getElementById('review-custom-error');
+  const ratingError = document.getElementById('review-rating-error');
+  const ratingInputs = [...form.querySelectorAll('input[name="rating"]')];
   const reviewText = document.getElementById('review-text');
   const statusText = (message, isError = false) => {
     status.textContent = message;
@@ -19,8 +22,23 @@
     const custom = destination.value === 'Other';
     customWrap.hidden = !custom;
     customInput.required = custom;
+    customInput.setCustomValidity('');
+    customInput.removeAttribute('aria-invalid');
+    customError.hidden = true;
     if (!custom) customInput.value = '';
   });
+  customInput.addEventListener('input', () => {
+    const invalid = customInput.required && customInput.value.trim().length < 2;
+    customInput.setCustomValidity(invalid ? 'Please enter the destination.' : '');
+    if (invalid) customInput.setAttribute('aria-invalid', 'true');
+    else customInput.removeAttribute('aria-invalid');
+    customError.hidden = !invalid;
+  });
+  ratingInputs.forEach(input => input.addEventListener('change', () => {
+    const rating = Number(input.value);
+    ratingInputs.forEach(star => star.nextElementSibling.classList.toggle('is-selected', Number(star.value) <= rating));
+    ratingError.hidden = true;
+  }));
   reviewText.addEventListener('input', () => {
     document.getElementById('review-character-count').textContent = new Intl.NumberFormat().format(1000 - reviewText.value.length);
   });
@@ -145,12 +163,34 @@
   form.addEventListener('submit', async event => {
     event.preventDefault();
     statusText('');
+    const customRequired = destination.value === 'Other';
+    customInput.required = customRequired;
+    const customInvalid = customRequired && customInput.value.trim().length < 2;
+    customInput.setCustomValidity(customInvalid ? 'Please enter the destination.' : '');
+    if (customInvalid) customInput.setAttribute('aria-invalid', 'true');
+    else customInput.removeAttribute('aria-invalid');
+    customError.hidden = !customInvalid;
+    const ratingSelected = form.querySelector('input[name="rating"]:checked');
+    ratingError.hidden = Boolean(ratingSelected);
+    if (!ratingSelected) {
+      ratingInputs[0]?.focus();
+      return;
+    }
+    if (customInvalid) {
+      customInput.focus();
+      form.reportValidity();
+      return;
+    }
     if (!form.reportValidity()) return;
     const data = new FormData(form);
     const reviewDestination = data.get('destination') === 'Other' ? data.get('customDestination') : data.get('destination');
     const button = form.querySelector('[type="submit"]');
+    const buttonLabel = button.querySelector('span');
+    const buttonIcon = button.querySelector('i');
     button.disabled = true;
     button.setAttribute('aria-busy', 'true');
+    buttonLabel.textContent = 'Submitting…';
+    buttonIcon.className = 'fas fa-spinner fa-spin';
     try {
       const response = await fetch(endpoint, {
         method: 'POST',
@@ -162,13 +202,19 @@
       form.reset();
       customWrap.hidden = true;
       customInput.required = false;
+      customInput.setCustomValidity('');
+      customInput.removeAttribute('aria-invalid');
+      customError.hidden = true;
+      ratingInputs.forEach(star => star.nextElementSibling.classList.remove('is-selected'));
       document.getElementById('review-character-count').textContent = '1,000';
-      statusText(result.message);
+      statusText('Thank you for sharing your experience! Your review has been submitted and will be published after approval.');
     } catch (error) {
       statusText(error.message || 'Your review could not be submitted. Please try again.', true);
     } finally {
       button.disabled = false;
       button.removeAttribute('aria-busy');
+      buttonLabel.textContent = 'Submit Review';
+      buttonIcon.className = 'fas fa-paper-plane';
     }
   });
 

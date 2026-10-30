@@ -958,28 +958,44 @@ button { cursor: pointer; border: none; background: none; font-family: var(--fon
 .review-dots { display:flex; justify-content:center; gap:8px; min-height:20px; margin:2px auto 32px; }
 .review-dot { width:8px; height:8px; padding:0; border:0; border-radius:50%; background:rgba(255,255,255,.35); cursor:pointer; }
 .review-dot[aria-current="true"] { width:22px; border-radius:99px; background:#ff8a18; }
-.review-form-panel { display:grid; grid-template-columns:minmax(220px,.75fr) minmax(0,1.6fr); gap:32px; align-items:start; max-width:1060px; margin:8px auto 0; padding:clamp(22px,4vw,40px); border-radius:20px; background:#fffaf3; color:#18283e; box-shadow:0 18px 42px rgba(0,0,0,.2); }
-.review-form-intro .section-tag { display:inline-block; margin-bottom:12px; color:#e85d04; font-size:.75rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
-.review-form-intro h3 { margin:0 0 10px; color:#17263b; font-family:Georgia,'Times New Roman',serif; font-size:clamp(1.55rem,3vw,2.2rem); line-height:1.12; }
-.review-form-intro p { margin:0; color:#647184; line-height:1.65; }
-.customer-review-form { display:grid; gap:16px; }
+.review-form-panel { display:grid; grid-template-columns:minmax(250px,.85fr) minmax(0,1.8fr); gap:0; align-items:stretch; max-width:1120px; margin:8px auto 0; padding:0; overflow:hidden; border:1px solid rgba(255,133,35,.3); border-radius:24px; background:#fff; color:#18283e; box-shadow:0 22px 58px rgba(0,0,0,.24); }
+.review-form-intro { position:relative; isolation:isolate; display:flex; min-width:0; min-height:640px; flex-direction:column; align-items:flex-start; overflow:hidden; padding:clamp(28px,3vw,42px); background:#fffaf2; }
+.review-form-intro > :not(.review-travel-art) { position:relative; z-index:1; }
+.review-form-intro::after { position:absolute; z-index:0; right:0; bottom:0; left:0; height:260px; content:""; background:linear-gradient(180deg,#fffaf2 0%,rgba(255,250,242,.78) 23%,rgba(255,250,242,.08) 75%); pointer-events:none; }
+.review-form-intro .section-tag { display:inline-flex; align-items:center; margin:0 0 17px; padding:8px 12px; border:1px solid rgba(232,93,4,.16); border-radius:999px; background:#fff0df; color:#d65408; font-size:.68rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
+.review-form-intro h3 { max-width:310px; margin:0 0 13px; color:#17263b; font-family:Georgia,'Times New Roman',serif; font-size:clamp(2rem,3.2vw,2.65rem); font-weight:700; line-height:1.08; }
+.review-form-intro > p { max-width:330px; margin:0; color:#647184; line-height:1.65; }
+.review-benefits { display:grid; gap:17px; margin:28px 0 0; padding:0; list-style:none; }
+.review-benefits li { display:flex; align-items:center; gap:12px; }
+.review-benefit-icon { display:grid; width:42px; height:42px; flex:none; place-items:center; border:1px solid rgba(255,122,8,.16); border-radius:50%; background:#fff0df; color:#ee6909; font-size:.95rem; }
+.review-benefits strong,.review-benefits small { display:block; }
+.review-benefits strong { color:#1b2b41; font-size:.88rem; font-weight:800; }
+.review-benefits small { margin-top:3px; color:#738093; font-size:.77rem; line-height:1.4; }
+.review-travel-art { position:absolute; z-index:0; right:0; bottom:0; left:0; display:block; width:100%; height:250px; object-fit:cover; object-position:center 71%; -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 32%); mask-image:linear-gradient(180deg,transparent 0%,#000 32%); }
+.customer-review-form { display:grid; align-content:start; gap:17px; min-width:0; padding:clamp(28px,4vw,48px); background:#fff; }
 .review-form-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
 .review-field { display:grid; gap:7px; color:#24344b; font-size:.86rem; font-weight:700; }
 .review-field > span:first-child,.review-rating-field legend span { color:#e85d04; }
 .review-field input,.review-field select,.review-field textarea { width:100%; min-width:0; padding:12px 13px; border:1px solid #dbe2e9; border-radius:10px; background:#fff; color:#18283e; font:inherit; font-weight:400; }
 .review-field input:focus,.review-field select:focus,.review-field textarea:focus { outline:3px solid rgba(255,107,0,.2); border-color:#ff7908; }
+.review-field input[aria-invalid="true"] { border-color:#bb3e2b; }
 .review-field textarea { min-height:128px; resize:vertical; }
 .review-rating-field { margin:0; padding:0; border:0; }
 .review-rating-field legend { margin-bottom:7px; color:#24344b; font-size:.86rem; font-weight:700; }
-.review-star-picker { display:flex; flex-direction:row-reverse; justify-content:flex-end; gap:3px; }
+.review-star-picker { display:flex; flex-direction:row; justify-content:flex-start; gap:5px; }
 .review-star-picker input { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
 .review-star-picker label { color:#c7cdd5; font-size:2rem; line-height:1; cursor:pointer; transition:color .15s ease,transform .15s ease; }
-.review-star-picker label:hover,.review-star-picker label:hover ~ label,.review-star-picker input:checked ~ label { color:#f59e0b; }
+.review-star-picker label:hover { color:#f59e0b; transform:translateY(-2px) scale(1.08); }
+.review-star-picker label.is-selected { color:#f59e0b; }
 .review-star-picker input:focus-visible + label { outline:2px solid #ff7908; outline-offset:3px; border-radius:3px; }
 .review-character-count { justify-self:end; color:#788496; font-size:.75rem; font-weight:400; }
-.review-submit { justify-self:start; min-height:46px; gap:10px; }
+.review-submit { display:flex; width:100%; min-height:52px; align-items:center; justify-content:center; gap:12px; margin-top:2px; border-radius:12px; background:linear-gradient(135deg,#ff7908,#f15d00); box-shadow:0 10px 20px rgba(241,93,0,.18); }
+.review-submit:hover { box-shadow:0 13px 25px rgba(241,93,0,.27); transform:translateY(-1px); }
+.review-submit:disabled { cursor:wait; opacity:.72; transform:none; }
 .review-form-status { margin:0; color:#235c35; font-weight:700; }
 .review-form-status[data-error="true"] { color:#a52a2a; }
+.review-field-error { color:#bb3e2b; font-size:.76rem; font-weight:600; }
+.review-field-error[hidden] { display:none; }
 .review-moderation-note { margin:0; color:#788496; font-size:.78rem; line-height:1.5; }
 .review-honey { position:absolute; left:-10000px; width:1px; height:1px; overflow:hidden; }
 .review-custom-destination[hidden],#review-custom-wrap[hidden] { display:none; }
@@ -1680,14 +1696,20 @@ button { cursor: pointer; border: none; background: none; font-family: var(--fon
 @media (max-width: 1050px) {
   .review-dashboard { grid-template-columns:minmax(160px,.8fr) minmax(130px,.55fr) minmax(250px,1.5fr); gap:16px; padding:20px; }
   .review-card { flex-basis:calc((100% - 32px)/3); }
-  .review-form-panel { gap:24px; }
+  .review-form-panel { grid-template-columns:minmax(225px,.9fr) minmax(0,1.65fr); }
 }
 @media (max-width: 760px) {
   .review-dashboard { grid-template-columns:1fr 1fr; gap:18px; }
   .review-total { border-inline:0; }
   .review-distribution { grid-column:1/-1; width:min(100%,480px); justify-self:center; }
   .review-card { flex-basis:calc((100% - 16px)/2); }
-  .review-form-panel { grid-template-columns:1fr; gap:18px; }
+  .review-form-panel { grid-template-columns:1fr; }
+  .review-form-intro { min-height:510px; padding:28px; }
+  .review-form-intro h3 { max-width:480px; font-size:clamp(2rem,6vw,2.6rem); }
+  .review-benefits { grid-template-columns:1fr 1fr; column-gap:18px; }
+  .review-benefits li:last-child { grid-column:1/-1; }
+  .review-travel-art { height:205px; }
+  .customer-review-form { padding:28px; }
 }
 @media (max-width: 520px) {
   .review-dashboard { grid-template-columns:1fr 1fr; gap:14px; margin-bottom:22px; padding:17px 14px; }
@@ -1698,8 +1720,14 @@ button { cursor: pointer; border: none; background: none; font-family: var(--fon
   .review-arrow { width:31px; height:31px; }
   .review-card { flex-basis:100%; min-height:230px; padding:18px; }
   .review-form-grid { grid-template-columns:1fr; }
-  .review-form-panel { padding:22px 17px; }
-  .review-submit { width:100%; justify-content:center; }
+  .review-form-panel { border-radius:19px; }
+  .review-form-intro { min-height:495px; padding:25px 22px; }
+  .review-form-intro h3 { font-size:2rem; }
+  .review-benefits { grid-template-columns:1fr; gap:12px; margin-top:21px; }
+  .review-benefits li:last-child { grid-column:auto; }
+  .review-benefit-icon { width:37px; height:37px; }
+  .review-travel-art { height:170px; }
+  .customer-review-form { gap:15px; padding:24px 20px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

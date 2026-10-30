@@ -555,18 +555,24 @@
     <div class="review-dots" id="review-dots" aria-label="Review pages"></div>
 
     <div class="review-form-panel">
-      <div class="review-form-intro">
+      <aside class="review-form-intro" aria-labelledby="review-form-heading">
         <span class="section-tag">Your feedback matters</span>
-        <h3>Share Your Travel Experience</h3>
+        <h3 id="review-form-heading">Share Your Travel Experience</h3>
         <p>Your feedback helps us serve you better and inspires other travelers.</p>
-      </div>
+        <ul class="review-benefits" aria-label="How your review helps">
+          <li><span class="review-benefit-icon"><i class="fas fa-route" aria-hidden="true"></i></span><span><strong>Help fellow travelers</strong><small>Share real travel experiences</small></span></li>
+          <li><span class="review-benefit-icon"><i class="fas fa-users" aria-hidden="true"></i></span><span><strong>Build community</strong><small>Support genuine reviews</small></span></li>
+          <li><span class="review-benefit-icon"><i class="fas fa-heart" aria-hidden="true"></i></span><span><strong>Improve our services</strong><small>Your feedback helps us grow</small></span></li>
+        </ul>
+        <img class="review-travel-art" src="/images/review-travel-illustration.jpg" alt="" loading="lazy" decoding="async">
+      </aside>
       <form id="customer-review-form" class="customer-review-form" novalidate>
         <label class="review-honey" aria-hidden="true">Leave blank<input name="website" tabindex="-1" autocomplete="off"></label>
         <div class="review-form-grid">
           <label class="review-field">Customer name <span aria-hidden="true">*</span>
-            <input name="name" type="text" minlength="2" maxlength="80" autocomplete="name" required>
+            <input name="name" type="text" minlength="2" maxlength="80" autocomplete="name" placeholder="Enter your name" required>
           </label>
-          <label class="review-field">Travel destination <span aria-hidden="true">*</span>
+          <label class="review-field">Enter destination <span aria-hidden="true">*</span>
             <select name="destination" id="review-destination" required>
               <option value="">Choose a destination</option>
               <optgroup label="Deoghar Local">
@@ -579,8 +585,9 @@
               <option value="Other">Other destination</option>
             </select>
           </label>
-          <label class="review-field review-custom-destination" id="review-custom-wrap" hidden>Enter destination <span aria-hidden="true">*</span>
-            <input name="customDestination" id="review-custom-destination" type="text" maxlength="100">
+          <label class="review-field review-custom-destination" id="review-custom-wrap" hidden>Please specify destination <span aria-hidden="true">*</span>
+            <input name="customDestination" id="review-custom-destination" type="text" maxlength="100" placeholder="Enter your destination (e.g. Varanasi, Haridwar, Puri)" aria-describedby="review-custom-error">
+            <span class="review-field-error" id="review-custom-error" role="alert" hidden>Please enter the destination.</span>
           </label>
         </div>
         <fieldset class="review-rating-field">
@@ -592,13 +599,13 @@
             <input type="radio" name="rating" id="review-star-4" value="4"><label for="review-star-4" aria-label="4 stars">★</label>
             <input type="radio" name="rating" id="review-star-5" value="5"><label for="review-star-5" aria-label="5 stars">★</label>
           </div>
-          <span class="review-field-error" id="review-rating-error"></span>
+          <span class="review-field-error" id="review-rating-error" role="alert" hidden>Please select a rating.</span>
         </fieldset>
         <label class="review-field">Your review <span aria-hidden="true">*</span>
           <textarea name="review" id="review-text" rows="5" minlength="20" maxlength="1000" required placeholder="Tell us about your journey (20–1,000 characters)"></textarea>
           <span class="review-character-count"><span id="review-character-count">1,000</span> characters remaining</span>
         </label>
-        <button class="btn btn-primary review-submit" type="submit">Submit Review <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+        <button class="btn btn-primary review-submit" type="submit"><span>Submit Review</span> <i class="fas fa-paper-plane" aria-hidden="true"></i></button>
         <p class="review-form-status" id="review-form-status" role="status" aria-live="polite"></p>
         <p class="review-moderation-note">Reviews are checked by our team before they appear publicly. A submission is not a booking confirmation.</p>
       </form>

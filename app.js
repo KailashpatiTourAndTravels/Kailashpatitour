@@ -127,7 +127,7 @@ document.addEventListener('keydown', (e) => {
 
 /* --- 8. Disable text selection on key elements --- */
 document.addEventListener('selectstart', (e) => {
-  const tag = e.target.tagName.toLowerCase();
+  const tag = e.target?.tagName?.toLowerCase?.() || '';
   // Allow selection inside inputs and textareas
   if (!['input','textarea','select'].includes(tag)) {
     e.preventDefault();

@@ -51,12 +51,12 @@
       const badge = document.createElement('span'); badge.className = `admin-status ${review.status}`; badge.textContent = review.status;
       head.append(info, badge);
       const text = document.createElement('p'); text.textContent = review.review;
-      card.append(head, text);
       const actions = document.createElement('div');
       actions.className = 'admin-actions';
       if (review.status !== 'approved') actions.append(actionButton('Approve', 'approve', review.id));
       if (review.status !== 'rejected') actions.append(actionButton('Reject', 'reject', review.id));
       actions.append(actionButton('Delete', 'delete', review.id));
+      card.append(head, text, actions);
       list.append(card);
     });
   }
