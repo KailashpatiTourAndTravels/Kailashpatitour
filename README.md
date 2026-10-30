@@ -31,3 +31,6 @@ Set `NOTIFICATION_METHOD` to `none`, `email`, `whatsapp`, or `both` in the hosti
 ## Deployment
 
 The repository contains `netlify.toml` and `vercel.json` deployment configuration. Run the destination validator before deploying and configure the storage and notification environment variables in the selected hosting provider. Confirm that the enquiry endpoint and notification setup work in a preview before accepting real enquiries.
+## Customer reviews
+
+Customer review submissions are stored as pending records in the existing Upstash Redis store and are not displayed publicly until an administrator approves them. The public `/api/reviews` endpoint returns approved reviews and calculates the average and star distribution from those records only. The administrator interface is at `/admin-reviews.html`; configure `REVIEWS_ADMIN_PASSWORD` (at least 16 characters) and preferably a separate random `REVIEWS_SESSION_SECRET` (at least 32 characters) in the hosting environment. The admin session is signed, HTTP-only, SameSite strict, and expires after eight hours. Submissions are text-only; customer photo uploads are not enabled. The previous hardcoded testimonials were removed from the public review section because their authenticity could not be confirmed from the repository.
