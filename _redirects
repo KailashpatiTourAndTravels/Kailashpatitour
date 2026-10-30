@@ -5,12 +5,16 @@
 /baidyanath-dham-taxi          /baidyanath-dham-taxi.html        200
 /force-urbania-rental-deoghar  /force-urbania-rental-deoghar.html 200
 
-# Force HTTPS — redirect all HTTP traffic to HTTPS
-http://kailashpatitourandtravels.com/*  https://kailashpatitourandtravels.com/:splat  301!
-http://www.kailashpatitourandtravels.com/*  https://kailashpatitourandtravels.com/:splat  301!
+# Force HTTPS and route old domain spellings to the verified production host
+http://kaliashpatitourandtravels.com/*     https://www.kaliashpatitourandtravels.com/:splat  301!
+http://www.kaliashpatitourandtravels.com/* https://www.kaliashpatitourandtravels.com/:splat  301!
+https://kaliashpatitourandtravels.com/*    https://www.kaliashpatitourandtravels.com/:splat  301!
+http://kailashpatitourandtravels.com/*     https://www.kaliashpatitourandtravels.com/:splat  301!
+http://www.kailashpatitourandtravels.com/* https://www.kaliashpatitourandtravels.com/:splat  301!
+https://kailashpatitourandtravels.com/*    https://www.kaliashpatitourandtravels.com/:splat  301!
 
-# Redirect www to non-www
-https://www.kailashpatitourandtravels.com/*  https://kailashpatitourandtravels.com/:splat  301!
+# Keep the verified www hostname canonical
+https://www.kailashpatitourandtravels.com/*  https://www.kaliashpatitourandtravels.com/:splat  301!
 
 # Block common attack paths that bots/hackers probe
 /wp-admin/*       /index.html  403!

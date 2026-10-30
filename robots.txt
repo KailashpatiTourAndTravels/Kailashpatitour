@@ -1,5 +1,5 @@
 # robots.txt — Kailashpati Tour & Travels
-# Domain: kailashpatitourandtravels.com
+# Domain: www.kaliashpatitourandtravels.com
 # Controls what search engines and bots can access
 
 User-agent: *
@@ -26,4 +26,4 @@ Disallow: /
 User-agent: MegaIndex
 Disallow: /
 
-Sitemap: https://kailashpatitourandtravels.com/sitemap.xml
+Sitemap: https://www.kaliashpatitourandtravels.com/sitemap.xml
